@@ -1,0 +1,25 @@
+{
+  "name": "listWithRelayandGraphQL",
+  "version": "1.0.0",
+  "description": "list with relay and graphql",
+  "main": "index.js",
+  "author": "Wellerson",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.13.3"
+  },
+  "scripts": {
+    "start": "lerna run start --stream",
+    "start:web": "lerna run start --scope /packages/web --stream",
+    "start:server": "lerna run start --scope /packages/server --stream",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}

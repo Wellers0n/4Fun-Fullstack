@@ -1,0 +1,22 @@
+schema {
+  query: Companies
+}
+
+"""Get companies"""
+type Companies {
+  companies: [Company]
+  company(name: String!): Company
+}
+
+type Company {
+  _id: ID
+  name: String
+  product: [products]
+}
+
+type products {
+  _id: ID
+  name: String
+  price: Float
+  idCompany: ID
+}
