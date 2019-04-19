@@ -3,15 +3,14 @@ import { hot } from 'react-hot-loader'
 import './app.css'
 import {graphql, QueryRenderer} from 'react-relay'
 import environment from './relay/environment'
+import Companies from './Companies'
 
 const App = () => (
   <QueryRenderer
     environment={environment}
     query={graphql`
       query  appQuery{
-        companies {
-          name
-        }
+          ...Companies_companies
       }
     `}
     variables={{}}
@@ -22,7 +21,7 @@ const App = () => (
       if(!props){
         return <div>Loading!</div>
       }
-      return <div>Foi: {props.companies.map((companie:any, index:number) => <div key={index}>{companie.name}</div>)}</div>
+      return <Companies companies={props}/>
     }}
   />
 )
