@@ -5,8 +5,6 @@ import {graphql, QueryRenderer} from 'react-relay'
 import environment from './relay/environment'
 import Router from './router'
 
-
-
 const App = () => {
   let [name, setName] = useState('')
 
@@ -22,6 +20,14 @@ const App = () => {
           company(name: $name){
             name
             img
+            id
+            _id
+            product{
+              name
+              _id
+              price
+              idCompany
+            }
           }
         }
       `}
@@ -29,7 +35,7 @@ const App = () => {
       render={({error, props}) => {
         if(error){
           return <div>erro!</div>
-        }
+        } 
         if(!props){
           return <div>Loading!</div>
         }

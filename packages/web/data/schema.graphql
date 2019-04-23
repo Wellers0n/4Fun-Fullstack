@@ -9,8 +9,11 @@ type Companies {
 }
 
 type Company {
+  """The ID of an object"""
+  id: ID!
   _id: ID
   name: String
+  img: String
   product: [products]
 }
 

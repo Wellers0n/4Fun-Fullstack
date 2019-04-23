@@ -14,6 +14,30 @@ const Home = ({company, setValue, prop}: any) => {
         color: #9FA7FC;
     `
 
+    const ContainerImg = styled.div`
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2em;
+    `
+    const Text = styled.div`
+        display:flex;
+        justify-content: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        align-items: center;
+        color: #6976FB;
+        font-size: 1.6em;
+    `
+
+    const Info = styled.div`
+        display:flex;
+        padding-left: 10px;
+        justify-content: center;
+        align-items: center;
+        color: #9FA7FC;
+    `
+
     if(!company){
         return (
             <div>
@@ -26,8 +50,12 @@ const Home = ({company, setValue, prop}: any) => {
         return (
             <div>
                 <Search setValue={setValue}/>
-                <Div>{company.name}</Div>
-
+                <ContainerImg>
+                    <img width={300} src={company.img}/>
+                </ContainerImg>
+                <Text>Name: <Info>{company.name}</Info></Text>
+                <Text>Global ID: <Info>{company.id}</Info></Text>
+                <Text>MongoDB ID: <Info>{company._id}</Info></Text>
             </div>
         )
     }
