@@ -21,6 +21,7 @@ const App = () => {
         query  appQuery($name: String!){
           company(name: $name){
             name
+            img
           }
         }
       `}

@@ -6,6 +6,10 @@ const companies = new Schema({
         type: String,
         required: 'name is requerid',
     },
+    img: {
+        type: String,
+        required: 'img is requerid',
+    },
    
 });
 

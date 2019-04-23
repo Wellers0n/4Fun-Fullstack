@@ -38,6 +38,9 @@ export const companyType = new GraphQLObjectType({
         name:{
             type: GraphQLString
         },
+        img:{
+            type: GraphQLString
+        },
         product:{
             type: new GraphQLList(ProductType),
             resolve: (parentValue, args) => {

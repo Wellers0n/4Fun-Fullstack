@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components'
 import Search from './../components/Search'
 
-const Home = ({company, setValue}: any) => {
+const Home = ({company, setValue, prop}: any) => {
 
     const Div = styled.div`
         font-family: 'Times New Roman', Times, serif;
@@ -17,6 +17,7 @@ const Home = ({company, setValue}: any) => {
     if(!company){
         return (
             <div>
+                {console.log(prop)}
                 <Search setValue={setValue}/>
                 <Div>Nada encontrado, Pesquise o nome da empresa!</Div>
             </div>
@@ -25,6 +26,8 @@ const Home = ({company, setValue}: any) => {
         return (
             <div>
                 <Search setValue={setValue}/>
+                <Div>{company.name}</Div>
+
             </div>
         )
     }

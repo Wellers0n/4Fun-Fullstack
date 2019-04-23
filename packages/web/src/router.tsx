@@ -7,7 +7,7 @@ const router = ({companies, setValue}: any) => {
         <BrowserRouter>
             <div>
                 <Switch>
-                    <Route path="/" exact render={() => <Home company={companies} 
+                    <Route path="/" exact render={(prop) => <Home prop={prop} company={companies} 
                            setValue={setValue}/>}>
                     </Route>
                 </Switch>
