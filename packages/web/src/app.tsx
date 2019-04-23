@@ -8,7 +8,7 @@ import Router from './router'
 
 
 const App = () => {
-  let [name, setName] = useState('Google')
+  let [name, setName] = useState('')
 
   function setValue(name:any){
      setName(name)
