@@ -1,4 +1,12 @@
-import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInt, GraphQLFloat } from 'graphql'
+import { 
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLID,
+    GraphQLList, 
+    GraphQLInt, 
+    GraphQLFloat
+} from 'graphql'
+import {globalIdField} from 'graphql-relay'
 import productModel from '../../model/products' 
 
 
@@ -23,6 +31,7 @@ const ProductType = new GraphQLObjectType({
 export const companyType = new GraphQLObjectType({
     name: 'Company',
     fields:{
+        id: globalIdField('Company'),
         _id:{
             type: GraphQLID
         },
