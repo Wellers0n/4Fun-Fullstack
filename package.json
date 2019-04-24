@@ -11,8 +11,8 @@
   },
   "scripts": {
     "start": "lerna run start --stream",
-    "start:web": "lerna run start --scope /packages/web --stream",
-    "start:server": "lerna run start --scope /packages/server --stream",
+    "start:web": "lerna run start --scope ./packages/web --stream",
+    "start:server": "lerna run start --scope ./packages/server --stream",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
