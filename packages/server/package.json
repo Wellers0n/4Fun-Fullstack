@@ -1,5 +1,5 @@
 {
-  "name": "test-graphql",
+  "name": "@graphql/server",
   "version": "1.0.0",
   "description": "GraphQL test",
   "main": "index.js",

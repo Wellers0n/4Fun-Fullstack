@@ -9,7 +9,7 @@ const App = () => {
   let [name, setName] = useState('')
 
   function setValue(name:any){
-     setName(name)
+     this.setName(name)
   }
 
   return (

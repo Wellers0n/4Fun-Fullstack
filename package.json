@@ -6,13 +6,10 @@
   "author": "Wellerson",
   "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "lerna": "^3.13.3"
-  },
   "scripts": {
-    "start": "lerna run start --stream",
-    "start:web": "lerna run start --scope ./packages/web --stream",
-    "start:server": "lerna run start --scope ./packages/server --stream",
+    "start": "yarn start:web & yarn start:server",
+    "start:web": "yarn workspace @react/web run start",
+    "start:server": "yarn workspace @graphql/server run start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
