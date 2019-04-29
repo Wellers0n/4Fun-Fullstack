@@ -15,6 +15,8 @@ const Search = ({setValue}: any) => {
         padding: 2em;
         background: #6976FB;
         display:flex;
+        box-sizing: border-box;
+        width: 100%;
         justify-content: center
     `; 
 
