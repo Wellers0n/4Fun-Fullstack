@@ -71,7 +71,6 @@ const Home = ({company, setValue, prop}: any) => {
     if(!company){
         return (
             <div>
-                {console.log(prop)}
                 <Search setValue={setValue}/>
                 <Msg>Nada encontrado, Pesquise o nome da empresa!</Msg>
             </div>

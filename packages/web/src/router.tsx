@@ -12,10 +12,16 @@ const router = ({companies, setValue}: any) => {
                            setValue={setValue}/>}
                     />
                     <Route path="/info/:id" render={({location}) => <Info location={location}/>} />
-
+                    <Route component={NoMatch} />
                 </Switch>
             </div>
         </BrowserRouter>
+    )
+}
+
+const NoMatch = () => {
+    return (
+        <div>pag not found</div>
     )
 }
 

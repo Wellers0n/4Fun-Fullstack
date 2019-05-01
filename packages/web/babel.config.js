@@ -13,7 +13,7 @@ module.exports = {
         [
             'relay',
             {
-              schema: './data/schema.json',
+              schema: './data/schema.graphql',
             },
         ],
     ]

@@ -15,6 +15,7 @@ const Product = ({products, history}:any) => {
         padding-top: 10px;
         box-sizing: border-box
     `
+    
     const Circle = styled.div`
         width: 120px;
         position: absolute;
@@ -63,7 +64,7 @@ const Product = ({products, history}:any) => {
                 <Buttom>Delete</Buttom>
                 <Buttom onClick={() => history.push({
                     pathname: `/info/${products._id}`,
-                    state: {id: products._id}
+                    state: {products: products}
                 })}>Info</Buttom>
             </ContainerButtom>
         </Container>
