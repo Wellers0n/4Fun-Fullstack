@@ -13,7 +13,8 @@ const Product = ({products, history}:any) => {
         overflow: hidden;
         position: relative;
         padding-top: 10px;
-        box-sizing: border-box
+        box-sizing: border-box;
+        border-radius: 5px;
     `
     
     const Circle = styled.div`
@@ -61,7 +62,6 @@ const Product = ({products, history}:any) => {
             <Text>Name: <Info>{products.name}</Info></Text>
             <Text>Price: <Info>{products.price}</Info></Text>
             <ContainerButtom>
-                <Buttom>Delete</Buttom>
                 <Buttom onClick={() => history.push({
                     pathname: `/info/${products._id}`,
                     state: {products: products}

@@ -11,7 +11,7 @@ const router = ({companies, setValue}: any) => {
                     <Route path="/" exact render={(prop) => <Home prop={prop} company={companies} 
                            setValue={setValue}/>}
                     />
-                    <Route path="/info/:id" render={({location}) => <Info location={location}/>} />
+                    <Route path="/info/:id" render={({location, history}) => <Info location={location} history={history}/>} />
                     <Route component={NoMatch} />
                 </Switch>
             </div>
