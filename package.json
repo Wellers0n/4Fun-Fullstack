@@ -7,16 +7,16 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "yarn start:web & yarn start:server",
+    "start": "yarn start:web & yarn start:server & yarn start:app",
     "start:web": "yarn workspace @react/web run start",
     "start:server": "yarn workspace @graphql/server run start",
+    "start:app": "yarn workspace @expo/app run start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "mongo": "yarn mongo:products & yarn mongo:companies",
     "mongo:products": "mongorestore -d graphql -c products ./mongo/products.bson",
     "mongo:companies": "mongorestore -d graphql -c companies ./mongo/companies.bson"
-
   },
   "workspaces": {
     "packages": [
