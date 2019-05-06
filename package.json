@@ -13,10 +13,7 @@
     "start:app": "yarn workspace @expo/app run start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "mongo": "yarn mongo:products & yarn mongo:companies",
-    "mongo:products": "mongorestore -d graphql -c products ./mongo/products.bson",
-    "mongo:companies": "mongorestore -d graphql -c companies ./mongo/companies.bson"
+    "eject": "react-scripts eject"
   },
   "workspaces": {
     "packages": [
