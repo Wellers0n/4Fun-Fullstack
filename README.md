@@ -1,4 +1,4 @@
-# Consuming an list of products done in GraphQL with RelayJS
+# Consuming a list of products done in GraphQL with RelayJS
 
   - Starting with GraphQL and RelayJS
   
