@@ -2,7 +2,6 @@ import Users from './../../../model/users';
 import { GraphQLString, GraphQLNonNull, GraphQLInt} from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { generateToken } from './../../../auth'
-import console = require('console');
 
 export default mutationWithClientMutationId({
     name: "UserLoginWithEmail",
