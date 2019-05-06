@@ -11,18 +11,6 @@ export default new GraphQLObjectType({
             resolve: () => {
                 return companiesModel.find({})
             }
-        },
-        company:{
-            type: companyType,
-            args:{
-                name: {
-                    type: new GraphQLNonNull(GraphQLString)
-                }
-            },
-            resolve: (parentValue, args) => {
-                console.log(args)
-                return companiesModel.findOne({name: args.name})
-            }
         }
     })
 })

@@ -25,7 +25,7 @@ app.use(router.routes())
 app.use(router.allowedMethods());
 
 // init mongoose
-mongoose.connect('mongodb://localhost:27017/graphql');
+mongoose.connect('mongodb://localhost:27017/company');
 
 export function greeter(person: string) {
     return "Hello, " + person;
