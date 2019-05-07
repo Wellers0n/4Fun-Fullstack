@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import Home from './screen/Home'
+import Login from './screen/Login'
 import Info from './screen/Info'
 
 const router = ({companies, setValue}: any) => {
@@ -8,11 +8,7 @@ const router = ({companies, setValue}: any) => {
         <BrowserRouter>
             <div>
                 <Switch>
-                    <Route path="/" exact render={(prop) => <Home prop={prop} company={companies} 
-                           setValue={setValue}/>}
-                    />
-                    <Route path="/info/:id" render={({location, history}) => <Info location={location} history={history}/>} />
-                    <Route component={NoMatch} />
+                    <Route path="/" exact component={Login}/>
                 </Switch>
             </div>
         </BrowserRouter>

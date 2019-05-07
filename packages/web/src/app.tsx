@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import * as React from 'react'
 import { hot } from 'react-hot-loader'
 import './app.css'
 import {graphql, QueryRenderer} from 'react-relay'
@@ -6,43 +6,7 @@ import environment from './relay/environment'
 import Router from './router'
 
 const App = () => {
-  let [name, setName] = useState('')
-
-  function setValue(name:any){
-     setName(name)
-  }
-
-  return (
-    <QueryRenderer
-      environment={environment}
-      query={graphql`
-        query  appQuery($name: String!){
-          company(name: $name){
-            name
-            img
-            id
-            _id
-            product{
-              name
-              _id
-              price
-              idCompany
-            }
-          }
-        }
-      `}
-      variables={{name: name}}
-      render={({error, props}) => {
-        if(error){
-          return <div>erro!</div>
-        } 
-        if(!props){
-          return <div>Loading!</div>
-        }
-        return <Router setValue={setValue} companies={props.company}/>
-      }}
-    />
-  )
+  return <Router/>
 }
 
 export default hot(module)(App)

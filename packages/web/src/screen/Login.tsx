@@ -1,9 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components'
-import Search from './../components/Search'
-import Product from './../components/Product'
 
-const Home = ({company, setValue, prop}: any) => {
+const Login = ({company, setValue, prop}: any) => {
 
     const Div = styled.div`
         font-family: 'Times New Roman', Times, serif;
@@ -68,35 +66,9 @@ const Home = ({company, setValue, prop}: any) => {
         padding: 50px 0;
     `
 
-    if(!company){
-        return (
-            <div>
-                <Search setValue={setValue}/>
-                <Msg>Nada encontrado, Pesquise o nome da empresa!</Msg>
-            </div>
-        )
-    }else{
-        return (
-            <Div>
-                <Search setValue={setValue}/>
-                <Title>Company</Title>
-                <ContainerImg>
-                    <img width={300} src={company.img}/>
-                </ContainerImg>
-                <Text>Name: <Info>{company.name}</Info></Text>
-                <Text>Global ID: <Info>{company.id}</Info></Text>
-                <Text>MongoDB ID: <Info>{company._id}</Info></Text>
-                <Title>Products</Title>
-                <ContainerProduct>
-                    {
-                        company.product.map((product:object, index:number) => {
-                            return <Product key={index} products={product} history={prop.history} />
-                        })
-                    }
-                </ContainerProduct>
-            </Div>
-        )
-    }
+   return(
+       <div>Login</div>
+   )
 }
 
-export default Home
+export default Login

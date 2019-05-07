@@ -11,7 +11,7 @@ const users = new Schema({
         required: 'email is requerid',
     },
     senha:{
-        type: Number,
+        type: String,
         required: 'senha is requerid',  
     }
    
