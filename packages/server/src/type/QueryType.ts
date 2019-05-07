@@ -1,15 +1,15 @@
 import { GraphQLObjectType ,GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql'
-import {companyType} from '../modules/company/companyTypes'
-import companiesModel from '../model/campanies' 
+import planetsType from '../modules/company/planetsTypes'
+import planetsModel from '../model/planets' 
 
 export default new GraphQLObjectType({
-    name: 'Companies',
-    description: 'Get companies',
+    name: 'Planets',
+    description: 'Get planets',
     fields: () => ({
-        companies: {
-            type: new GraphQLList(companyType),
+        planets: {
+            type: new GraphQLList(planetsType),
             resolve: () => {
-                return companiesModel.find({})
+                return planetsModel.find({})
             }
         }
     })

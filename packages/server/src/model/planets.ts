@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const companies = new Schema({
+const planets = new Schema({
     name: {
         type: String,
         required: 'name is requerid',
@@ -18,11 +18,6 @@ const companies = new Schema({
         type: String,
         required: 'description is requerid',
     },
-    yearsCompany: {
-        type: Number,
-        required: 'years is requerid'
-    }
-   
 });
 
-export default mongoose.model('companies', companies)
+export default mongoose.model('planets', planets)

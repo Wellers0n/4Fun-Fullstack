@@ -2,14 +2,13 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLID,
-    GraphQLInt, 
 } from 'graphql'
 import {globalIdField} from 'graphql-relay'
 
-export const companyType = new GraphQLObjectType({
-    name: 'Company',
-    fields:{
-        id: globalIdField('Company'),
+export default new GraphQLObjectType({
+    name: 'PlanetsType',
+    fields: () => ({
+        id: globalIdField('Planets'),
         _id:{
             type: GraphQLID
         },
@@ -25,9 +24,6 @@ export const companyType = new GraphQLObjectType({
         description:{
             type: GraphQLString
         },
-        yearsCompany:{
-            type: GraphQLInt
-        }
-    }
+    })
 })
 
