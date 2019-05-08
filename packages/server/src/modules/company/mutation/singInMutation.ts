@@ -9,12 +9,12 @@ export default mutationWithClientMutationId({
         email: {
             type: new GraphQLNonNull(GraphQLString)
         },
-        senha: {
+        password: {
             type: new GraphQLNonNull(GraphQLString),
         }
     },
-    mutateAndGetPayload: async ({ email, senha }) => {
-        const user = await Users.findOne({email, senha});
+    mutateAndGetPayload: async ({ email, password }) => {
+        const user = await Users.findOne({email, password});
 
         const defaultErrorMessage = 'Invalid password';
     
