@@ -6,8 +6,10 @@ const Home = () => {
     return (
         <div>
            LOGADO
+
         </div>
     )
+    
 }
 
 export default Home

@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "yarn start:web & yarn start:server & yarn start:app",
+    "start": "yarn start:web & yarn start:server",
     "start:web": "yarn workspace @react/web run start",
     "start:server": "yarn workspace @graphql/server run start",
     "start:app": "yarn workspace @expo/app run start",

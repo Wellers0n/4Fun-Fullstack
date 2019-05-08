@@ -1,25 +1,36 @@
 schema {
-  query: Companies
+  query: Planets
+  mutation: Mutation
 }
 
-"""Get companies"""
-type Companies {
-  companies: [Company]
-  company(name: String!): Company
+type Mutation {
+  signInMutation(input: UserLoginWithEmailInput!): UserLoginWithEmailPayload
 }
 
-type Company {
+"""Get planets"""
+type Planets {
+  planet(id: ID!): PlanetsType
+  planets: [PlanetsType]
+}
+
+type PlanetsType {
   """The ID of an object"""
   id: ID!
   _id: ID
   name: String
   img: String
-  product: [products]
+  intro: String
+  description: String
 }
 
-type products {
-  _id: ID
-  name: String
-  price: Float
-  idCompany: ID
+input UserLoginWithEmailInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type UserLoginWithEmailPayload {
+  token: String
+  error: String
+  clientMutationId: String
 }

@@ -10,11 +10,6 @@ module.exports = {
         "@babel/proposal-object-rest-spread",
         "@babel/plugin-transform-runtime",
         "react-hot-loader/babel",
-        [
-            'relay',
-            {
-              schema: './data/schema.graphql',
-            },
-        ],
+        'relay'
     ]
 }
