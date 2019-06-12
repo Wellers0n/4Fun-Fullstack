@@ -13,7 +13,7 @@ export type Login_planets = ReadonlyArray<{
 const node: ReaderFragment = ({
     "kind": "Fragment",
     "name": "Login_planets",
-    "type": "PlanetsType",
+    "type": "Planets",
     "metadata": {
         "plural": true
     },
@@ -35,5 +35,5 @@ const node: ReaderFragment = ({
         }
     ]
 } as any);
-(node as any).hash = '59658e1bd5e3d88bdaaaa5eacaf6b622';
+(node as any).hash = 'c27704b415fff1caba8c541d4b83597c';
 export default node;

@@ -1,8 +1,8 @@
 # source: http://localhost:5000/graphql
-# timestamp: Wed Jun 12 2019 15:06:16 GMT-0300 (Brasilia Standard Time)
+# timestamp: Wed Jun 12 2019 19:39:38 GMT-0300 (Brasilia Standard Time)
 
 schema {
-  query: Planets
+  query: QueryType
   mutation: Mutation
 }
 
@@ -11,13 +11,7 @@ type Mutation {
   singUpMutation(input: SingUpUserLoginWithEmailInput!): SingUpUserLoginWithEmailPayload
 }
 
-"""Get planets"""
 type Planets {
-  planet(id: ID!): PlanetsType
-  planets: [PlanetsType]
-}
-
-type PlanetsType {
   """The ID of an object"""
   id: ID!
   _id: ID
@@ -25,6 +19,12 @@ type PlanetsType {
   img: String
   intro: String
   description: String
+}
+
+"""Get planets"""
+type QueryType {
+  planet(id: ID!): Planets
+  planets: [Planets]
 }
 
 input SingUpUserLoginWithEmailInput {

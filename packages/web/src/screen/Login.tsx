@@ -19,7 +19,7 @@ const Login = ({ planets }: PostProps) => (
 const FragmentContainer = createFragmentContainer(
     Login, {
         planets: graphql`
-        fragment Login_planets on PlanetsType @relay(plural: true) {
+        fragment Login_planets on Planets @relay(plural: true) {
         name
         description
       },

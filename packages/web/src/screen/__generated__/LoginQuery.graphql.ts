@@ -23,7 +23,7 @@ query LoginQuery {
   }
 }
 
-fragment Login_planets on PlanetsType {
+fragment Login_planets on Planets {
   name
   description
 }
@@ -34,7 +34,7 @@ const node: ConcreteRequest = ({
     "fragment": {
         "kind": "Fragment",
         "name": "LoginQuery",
-        "type": "Planets",
+        "type": "QueryType",
         "metadata": null,
         "argumentDefinitions": [],
         "selections": [
@@ -44,7 +44,7 @@ const node: ConcreteRequest = ({
                 "name": "planets",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "PlanetsType",
+                "concreteType": "Planets",
                 "plural": true,
                 "selections": [
                     {
@@ -67,7 +67,7 @@ const node: ConcreteRequest = ({
                 "name": "planets",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "PlanetsType",
+                "concreteType": "Planets",
                 "plural": true,
                 "selections": [
                     {
@@ -99,7 +99,7 @@ const node: ConcreteRequest = ({
         "operationKind": "query",
         "name": "LoginQuery",
         "id": null,
-        "text": "query LoginQuery {\n  planets {\n    ...Login_planets\n    id\n  }\n}\n\nfragment Login_planets on PlanetsType {\n  name\n  description\n}\n",
+        "text": "query LoginQuery {\n  planets {\n    ...Login_planets\n    id\n  }\n}\n\nfragment Login_planets on Planets {\n  name\n  description\n}\n",
         "metadata": {}
     }
 } as any);
