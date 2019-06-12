@@ -10,10 +10,6 @@ const planets = new Schema({
         type: String,
         required: 'img is requerid',
     },
-    intro: {
-        type: String,
-        required: 'intro is requerid',
-    },
     description: {
         type: String,
         required: 'description is requerid',

@@ -1,6 +1,6 @@
 import { GraphQLObjectType } from 'graphql';
 
-import CompanyMutations from '../modules/company/mutation';
+import CompanyMutations from '../modules/main/mutation';
 
 export default new GraphQLObjectType({
   name: 'Mutation',

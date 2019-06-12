@@ -1,14 +1,14 @@
 import { GraphQLObjectType ,GraphQLList, GraphQLNonNull, GraphQLID } from 'graphql'
-import planetsType from '../modules/company/planetsTypes'
+import planets from '../modules/main/planets'
 import planetsModel from '../model/planets' 
 
 
 export default new GraphQLObjectType({
-    name: 'Planets',
+    name: 'QueryType',
     description: 'Get planets',
     fields: () => ({
         planet: {
-            type: planetsType,
+            type: planets,
             args: {
                 id:{
                     type: new GraphQLNonNull(GraphQLID)
@@ -19,7 +19,7 @@ export default new GraphQLObjectType({
             }
         },
         planets: {
-            type: new GraphQLList(planetsType),
+            type: new GraphQLList(planets),
             resolve: () => {
                 return planetsModel.find({})
             }

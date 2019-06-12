@@ -6,7 +6,7 @@ import {
 import {globalIdField} from 'graphql-relay'
 
 export default new GraphQLObjectType({
-    name: 'PlanetsType',
+    name: 'Planets',
     fields: () => ({
         id: globalIdField('Planets'),
         _id:{

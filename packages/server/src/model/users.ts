@@ -10,7 +10,7 @@ const users = new Schema({
         type: String,
         required: 'email is requerid',
     },
-    senha:{
+    password:{
         type: String,
         required: 'senha is requerid',  
     }

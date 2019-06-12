@@ -1,4 +1,4 @@
-import koa from 'koa';
+import koa, { Request } from 'koa';
 import route from 'koa-router'
 import logger from 'koa-logger'
 import json from 'koa-json'
@@ -8,6 +8,7 @@ import dotenv from 'dotenv-safe'
 const graphqlHTTP = require("koa-graphql");
 import schema from './schema'
 import mongoose from 'mongoose';
+import { getUser } from './auth'
 
 
 // init router and koa
@@ -25,18 +26,36 @@ app.use(router.routes())
 app.use(router.allowedMethods());
 
 // init mongoose
-mongoose.connect('mongodb://localhost:27017/planet', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://test:test@cluster0-fpizt.mongodb.net/planet?retryWrites=true&w=majority', { useNewUrlParser: true })
+// mongoose.connect('mongodb://localhost:27017/planet', { useNewUrlParser: true });
 
-export function greeter(person: string) {
-    return "Hello, " + person;
-}
+const graphqlSettingsPerReq = async (req: Request) => {
+    const { user } = await getUser(req.header.authorization);
 
-router.all('/graphql', graphqlHTTP({
-    schema: schema,
-    graphiql: true
-}))
+    // const dataloaders = Object.keys(loaders).reduce(
+    //   (acc, loaderKey) => ({
+    //     ...acc,
+    //     [loaderKey]: loaders[loaderKey].getLoader(),
+    //   }),
+    //   {},
+    // );
 
-app.listen(process.env.PORT || 5000,() => {
+    return {
+        graphiql: true,
+        schema,
+        context: {
+            user,
+            req,
+            // dataloaders,
+        },
+    };
+};
+
+const graphqlServer = graphqlHTTP(graphqlSettingsPerReq);
+
+router.all('/graphql', graphqlServer)
+
+app.listen(process.env.PORT || 5000, () => {
     return console.log(`SERVER ON: http://localhost:${process.env.PORT || 5000}/graphql`)
 })
 
