@@ -13,7 +13,7 @@ type Config = {
 };
 
 export default function createQueryRenderer(
-    FragmentComponent: React.FunctionComponent,
+    FragmentComponent: React.ComponentType,
     Component: React.ComponentType,
     config: Config,
 ) {
