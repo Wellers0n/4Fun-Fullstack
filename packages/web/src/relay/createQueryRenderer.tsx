@@ -1,59 +1,52 @@
-import * as React from 'react';
-import { QueryRenderer } from 'react-relay';
-import { Variables, GraphQLTaggedNode } from 'relay-runtime'
-import Environment from './environment';
+import * as React from "react";
+import * as hoistStatics from "hoist-non-react-statics";
+import { QueryRenderer } from "react-relay";
 
+import { GraphQLTaggedNode, Variables } from "relay-runtime";
+
+import Environment from "./../relay/environment";
 
 type Config = {
-    query: GraphQLTaggedNode,
-    queriesParams?: (props: object) => Variables,
-    variables?: Variables,
-    getFragmentProps: (fragmentProps: object) => object;
-    loadingView?: React.ReactNode | null;
+  query: GraphQLTaggedNode;
+  queriesParams?: (props: Object) => Object;
+  variables?: Variables;
+  hideSplash?: boolean;
 };
 
-export default function createQueryRenderer(
-    FragmentComponent: React.ComponentType,
-    Component: React.ComponentType,
-    config: Config,
+export default function createQueryRenderer<P>(
+  FragmentComponent: any,
+  Component: React.ComponentType<P>,
+  config: Config
 ) {
-    const { query, queriesParams } = config;
+  const { query, queriesParams } = config;
 
-    class QueryRendererWrapper extends React.Component<{}> {
-        render() {
-            const variables = queriesParams
-                ? queriesParams(this.props) :
-                config.variables;
-            return (
-                <QueryRenderer
-                    environment={Environment}
-                    query={query}
-                    variables={variables}
-                    render={({ error, props, retry }) => {
-                        if (error) {
-                            return (
-                                <div>error</div>
-                            );
-                        }
-                        if (props) {
-                            const fragmentProps = config.getFragmentProps
-                                ? config.getFragmentProps(props)
-                                : { query: props };
-                            return (
-                                <FragmentComponent
-                                    {...this.props}
-                                    {...fragmentProps}
-                                />
-                            );
-                        }
-                        if (config.loadingView !== undefined) {
-                            return config.loadingView;
-                        }
-                        return <div>loading...</div>
-                    }}
-                />
-            )
-        }
+  class QueryRendererWrapper extends React.Component<{}> {
+    render() {
+      const variables = queriesParams
+        ? queriesParams(this.props)
+        : config.variables;
+
+      return (
+        <QueryRenderer
+          environment={Environment}
+          query={query}
+          variables={variables || {}}
+          render={({ error, props }) => {
+            if (error) {
+              return <span>{error.toString()}</span>;
+            }
+
+            if (props) {
+              
+              return <FragmentComponent {...this.props} {...props} />;
+            }
+
+            return <span>loading</span>;
+          }}
+        />
+      );
     }
-}
+  }
 
+  return hoistStatics(QueryRendererWrapper, Component);
+}
