@@ -10,7 +10,6 @@ type Config = {
   query: GraphQLTaggedNode;
   queriesParams?: (props: Object) => Object;
   variables?: Variables;
-  hideSplash?: boolean;
 };
 
 export default function createQueryRenderer<P>(
@@ -37,7 +36,6 @@ export default function createQueryRenderer<P>(
             }
 
             if (props) {
-              
               return <FragmentComponent {...this.props} {...props} />;
             }
 

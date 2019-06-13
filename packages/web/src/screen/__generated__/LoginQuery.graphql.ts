@@ -1,12 +1,11 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-type Login_planets$ref = any;
 export type LoginQueryVariables = {};
 export type LoginQueryResponse = {
-    readonly planets: ReadonlyArray<{
-        readonly " $fragmentRefs": Login_planets$ref;
-    } | null> | null;
+    readonly signInMutation: {
+        readonly token: string | null;
+    } | null;
 };
 export type LoginQuery = {
     readonly response: LoginQueryResponse;
@@ -16,92 +15,68 @@ export type LoginQuery = {
 
 
 /*
-query LoginQuery {
-  planets {
-    ...Login_planets
-    id
+mutation LoginQuery {
+  signInMutation(input: {email: "lucas@hotmail.com", password: "123456"}) {
+    token
   }
-}
-
-fragment Login_planets on Planets {
-  name
-  description
 }
 */
 
-const node: ConcreteRequest = ({
-    "kind": "Request",
-    "fragment": {
-        "kind": "Fragment",
-        "name": "LoginQuery",
-        "type": "QueryType",
-        "metadata": null,
-        "argumentDefinitions": [],
-        "selections": [
-            {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "planets",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Planets",
-                "plural": true,
-                "selections": [
-                    {
-                        "kind": "FragmentSpread",
-                        "name": "Login_planets",
-                        "args": null
-                    }
-                ]
-            }
-        ]
-    },
-    "operation": {
-        "kind": "Operation",
-        "name": "LoginQuery",
-        "argumentDefinitions": [],
-        "selections": [
-            {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "planets",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Planets",
-                "plural": true,
-                "selections": [
-                    {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "name",
-                        "args": null,
-                        "storageKey": null
+const node: ConcreteRequest = (function () {
+    var v0 = [
+        ({
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "signInMutation",
+            "storageKey": "signInMutation(input:{\"email\":\"lucas@hotmail.com\",\"password\":\"123456\"})",
+            "args": [
+                {
+                    "kind": "Literal",
+                    "name": "input",
+                    "value": {
+                        "email": "lucas@hotmail.com",
+                        "password": "123456"
                     },
-                    {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "description",
-                        "args": null,
-                        "storageKey": null
-                    },
-                    {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "id",
-                        "args": null,
-                        "storageKey": null
-                    }
-                ]
-            }
-        ]
-    },
-    "params": {
-        "operationKind": "query",
-        "name": "LoginQuery",
-        "id": null,
-        "text": "query LoginQuery {\n  planets {\n    ...Login_planets\n    id\n  }\n}\n\nfragment Login_planets on Planets {\n  name\n  description\n}\n",
-        "metadata": {}
-    }
-} as any);
-(node as any).hash = 'd9656da4a2b30f1bd9e15cd9f1f34886';
+                    "type": "UserLoginWithEmailInput!"
+                }
+            ],
+            "concreteType": "UserLoginWithEmailPayload",
+            "plural": false,
+            "selections": [
+                {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "token",
+                    "args": null,
+                    "storageKey": null
+                }
+            ]
+        } as any)
+    ];
+    return {
+        "kind": "Request",
+        "fragment": {
+            "kind": "Fragment",
+            "name": "LoginQuery",
+            "type": "Mutation",
+            "metadata": null,
+            "argumentDefinitions": [],
+            "selections": (v0 /*: any*/)
+        },
+        "operation": {
+            "kind": "Operation",
+            "name": "LoginQuery",
+            "argumentDefinitions": [],
+            "selections": (v0 /*: any*/)
+        },
+        "params": {
+            "operationKind": "mutation",
+            "name": "LoginQuery",
+            "id": null,
+            "text": "mutation LoginQuery {\n  signInMutation(input: {email: \"lucas@hotmail.com\", password: \"123456\"}) {\n    token\n  }\n}\n",
+            "metadata": {}
+        }
+    } as any;
+})();
+(node as any).hash = '27ed9beafdfed17b0edd5c9f3a6f10a8';
 export default node;

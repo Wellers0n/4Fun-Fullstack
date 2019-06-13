@@ -1,37 +1,42 @@
-import * as React from "react";
-import { createFragmentContainer, graphql, QueryRenderer } from "react-relay";
+import React, { useEffect } from "react";
+import {
+  createFragmentContainer,
+  graphql,
+  QueryRenderer,
+  commitMutation
+} from "react-relay";
 import Environment from "./../relay/environment";
 import createQueryRenderer from "./../relay/createQueryRenderer";
-import { Login_planets } from "./__generated__/Login_planets.graphql";
+import { RouterProps } from "react-router";
 
-type PostProps = {
-  planets: Login_planets;
+const mutation = graphql`
+  mutation LoginQuery {
+    signInMutation(input: { email: "lucas@hotmail.com", password: "123456" }) {
+      token
+    }
+  }
+`;
+
+const Login = ({ history }: RouterProps) => {
+  useEffect(() => {
+    commitMutation(Environment, {
+      mutation,
+      variables: {},
+      onCompleted: (response, errors) => {
+        console.log(response.signInMutation);
+      },
+      onError: err => console.error(err)
+    });
+  }, []);
+
+  return (
+    <div>
+      <span>
+        {console.log(history)}
+        <div>login</div>
+      </span>
+    </div>
+  );
 };
-const Login = ({ planets }: PostProps) => (
-  <div>
-    <span>
-      {console.log(planets)}
-      {planets.map((v, i) => (
-        <div key={i}>{v.name}</div>
-      ))}
-    </span>
-  </div>
-);
-const FragmentContainer = createFragmentContainer(Login, {
-  planets: graphql`
-    fragment Login_planets on Planets {
-      name
-      description
-    }
-  `
-});
 
-export default createQueryRenderer(FragmentContainer, Login, {
-  query: graphql`
-    query LoginQuery {
-      planets {
-        ...Login_planets
-      }
-    }
-  `
-});
+export default Login;
