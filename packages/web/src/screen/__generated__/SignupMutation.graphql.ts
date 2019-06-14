@@ -1,34 +1,35 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type UserLoginWithEmailInput = {
+export type SingUpUserLoginWithEmailInput = {
+    readonly name: string;
     readonly email: string;
     readonly password: string;
     readonly clientMutationId?: string | null;
 };
-export type LoginQueryVariables = {
-    readonly input: UserLoginWithEmailInput;
+export type SignupMutationVariables = {
+    readonly input: SingUpUserLoginWithEmailInput;
 };
-export type LoginQueryResponse = {
-    readonly signInMutation: {
-        readonly token: string | null;
-        readonly error: string | null;
+export type SignupMutationResponse = {
+    readonly singUpMutation: {
+        readonly msg: string | null;
+        readonly userExist: string | null;
     } | null;
 };
-export type LoginQuery = {
-    readonly response: LoginQueryResponse;
-    readonly variables: LoginQueryVariables;
+export type SignupMutation = {
+    readonly response: SignupMutationResponse;
+    readonly variables: SignupMutationVariables;
 };
 
 
 
 /*
-mutation LoginQuery(
-  $input: UserLoginWithEmailInput!
+mutation SignupMutation(
+  $input: SingUpUserLoginWithEmailInput!
 ) {
-  signInMutation(input: $input) {
-    token
-    error
+  singUpMutation(input: $input) {
+    msg
+    userExist
   }
 }
 */
@@ -38,37 +39,37 @@ const node: ConcreteRequest = (function () {
         ({
             "kind": "LocalArgument",
             "name": "input",
-            "type": "UserLoginWithEmailInput!",
+            "type": "SingUpUserLoginWithEmailInput!",
             "defaultValue": null
         } as any)
     ], v1 = [
         ({
             "kind": "LinkedField",
             "alias": null,
-            "name": "signInMutation",
+            "name": "singUpMutation",
             "storageKey": null,
             "args": [
                 {
                     "kind": "Variable",
                     "name": "input",
                     "variableName": "input",
-                    "type": "UserLoginWithEmailInput!"
+                    "type": "SingUpUserLoginWithEmailInput!"
                 }
             ],
-            "concreteType": "UserLoginWithEmailPayload",
+            "concreteType": "SingUpUserLoginWithEmailPayload",
             "plural": false,
             "selections": [
                 {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "token",
+                    "name": "msg",
                     "args": null,
                     "storageKey": null
                 },
                 {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "error",
+                    "name": "userExist",
                     "args": null,
                     "storageKey": null
                 }
@@ -79,7 +80,7 @@ const node: ConcreteRequest = (function () {
         "kind": "Request",
         "fragment": {
             "kind": "Fragment",
-            "name": "LoginQuery",
+            "name": "SignupMutation",
             "type": "MutationType",
             "metadata": null,
             "argumentDefinitions": (v0 /*: any*/),
@@ -87,18 +88,18 @@ const node: ConcreteRequest = (function () {
         },
         "operation": {
             "kind": "Operation",
-            "name": "LoginQuery",
+            "name": "SignupMutation",
             "argumentDefinitions": (v0 /*: any*/),
             "selections": (v1 /*: any*/)
         },
         "params": {
             "operationKind": "mutation",
-            "name": "LoginQuery",
+            "name": "SignupMutation",
             "id": null,
-            "text": "mutation LoginQuery(\n  $input: UserLoginWithEmailInput!\n) {\n  signInMutation(input: $input) {\n    token\n    error\n  }\n}\n",
+            "text": "mutation SignupMutation(\n  $input: SingUpUserLoginWithEmailInput!\n) {\n  singUpMutation(input: $input) {\n    msg\n    userExist\n  }\n}\n",
             "metadata": {}
         }
     } as any;
 })();
-(node as any).hash = '9379f62fdbea93a70735be993e8d1772';
+(node as any).hash = '3186729c27259fbbc864a3469753bfea';
 export default node;
