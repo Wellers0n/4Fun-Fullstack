@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import {
-  createFragmentContainer,
   graphql,
-  QueryRenderer,
   commitMutation
 } from "react-relay";
 import Environment from "./../relay/environment";
-import createQueryRenderer from "./../relay/createQueryRenderer";
 import { RouterProps } from "react-router";
 import { LoginQueryResponse } from "./__generated__/LoginQuery.graphql";
 
 const Login = ({ history }: RouterProps) => {
+  // useState's()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -50,18 +48,20 @@ const Login = ({ history }: RouterProps) => {
         <div>login</div>
         <input
           type="text"
+          placeholder="email"
           name="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
         <input
-          type="text"
-          name="senha"
+          type="password"
+          name="password"
+          placeholder="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
         <button onClick={loginIn}>login</button>
-        <button onClick={() => history.push('/signup')}>signUp</button>
+        <button onClick={() => history.push('/signup')}>registre</button>
         <div>{msg}</div>
       </span>
     </div>

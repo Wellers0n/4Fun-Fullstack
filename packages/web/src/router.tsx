@@ -4,6 +4,7 @@ import PrivateRouter from './components/PrivateRouter'
 import Login from './screen/Login'
 import Signup from './screen/Signup'
 import Home from './screen/Home'
+import Create from './screen/Create'
 
 const router = () => {
     return (
@@ -13,6 +14,7 @@ const router = () => {
                     <Route path="/" exact component={Login} />
                     <Route path="/signup" component={Signup} />
                     <PrivateRouter path="/home" component={Home} />
+                    <PrivateRouter path="/create" component={Create} />
                 </Switch>
             </div>
         </BrowserRouter>

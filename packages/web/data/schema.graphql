@@ -1,14 +1,28 @@
 # source: http://localhost:5000/graphql
-# timestamp: Thu Jun 13 2019 23:47:41 GMT-0300 (Brasilia Standard Time)
+# timestamp: Mon Jun 17 2019 11:52:58 GMT-0300 (Brasilia Standard Time)
 
 schema {
   query: QueryType
   mutation: MutationType
 }
 
+input createPlanetMutationInput {
+  name: String!
+  description: String!
+  img: String!
+  clientMutationId: String
+}
+
+type createPlanetMutationPayload {
+  success: String
+  error: String
+  clientMutationId: String
+}
+
 type MutationType {
   signInMutation(input: UserLoginWithEmailInput!): UserLoginWithEmailPayload
   singUpMutation(input: SingUpUserLoginWithEmailInput!): SingUpUserLoginWithEmailPayload
+  createPlanetMutation(input: createPlanetMutationInput!): createPlanetMutationPayload
 }
 
 type Planets {
@@ -17,8 +31,8 @@ type Planets {
   _id: ID
   name: String
   img: String
-  intro: String
   description: String
+  idUser: String
 }
 
 """Get planets[] and planet"""

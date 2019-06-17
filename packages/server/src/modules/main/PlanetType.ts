@@ -13,17 +13,17 @@ export default new GraphQLObjectType({
             type: GraphQLID
         },
         name:{
-            type: GraphQLString
+            type: GraphQLString,
         },
         img:{
-            type: GraphQLString
-        },
-        intro:{
             type: GraphQLString
         },
         description:{
             type: GraphQLString
         },
+        idUser: {
+            type: GraphQLString
+        }
     })
 })
 
