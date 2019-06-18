@@ -32,7 +32,7 @@ const Signup = ({ history }: RouterProps) => {
         if (success) {
           setMsg(success);
           return setTimeout(() => {
-            history.push("/");
+            history.push("/home");
           }, 800);
         }
 

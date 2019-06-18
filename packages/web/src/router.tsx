@@ -5,6 +5,7 @@ import Login from './screen/Login'
 import Signup from './screen/Signup'
 import Home from './screen/Home'
 import Create from './screen/Create'
+import Detail from './screen/DetailPlanet'
 
 const router = () => {
     return (
@@ -15,6 +16,7 @@ const router = () => {
                     <Route path="/signup" component={Signup} />
                     <PrivateRouter path="/home" component={Home} />
                     <PrivateRouter path="/create" component={Create} />
+                    <PrivateRouter path="/detail/:id" component={Detail} />
                 </Switch>
             </div>
         </BrowserRouter>

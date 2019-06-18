@@ -1,33 +1,23 @@
 /* tslint:disable */
 
 import { ReaderFragment } from "relay-runtime";
-export type Home_planets$ref = any;
-export type Home_planets = ReadonlyArray<{
-    readonly _id: string | null;
+export type DetailPlanet_planet$ref = any;
+export type DetailPlanet_planet = {
     readonly name: string | null;
     readonly description: string | null;
     readonly img: string | null;
-    readonly " $refType": Home_planets$ref;
-}>;
+    readonly " $refType": DetailPlanet_planet$ref;
+};
 
 
 
 const node: ReaderFragment = ({
     "kind": "Fragment",
-    "name": "Home_planets",
+    "name": "DetailPlanet_planet",
     "type": "Planets",
-    "metadata": {
-        "plural": true
-    },
+    "metadata": null,
     "argumentDefinitions": [],
     "selections": [
-        {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "_id",
-            "args": null,
-            "storageKey": null
-        },
         {
             "kind": "ScalarField",
             "alias": null,
@@ -51,5 +41,5 @@ const node: ReaderFragment = ({
         }
     ]
 } as any);
-(node as any).hash = '89f1d2045192ade8a835915c7a01212f';
+(node as any).hash = 'd73c4992b6fed68f8a468cf496397277';
 export default node;

@@ -24,6 +24,7 @@ query HomeQuery {
 }
 
 fragment Home_planets on Planets {
+  _id
   name
   description
   img
@@ -74,6 +75,13 @@ const node: ConcreteRequest = ({
                     {
                         "kind": "ScalarField",
                         "alias": null,
+                        "name": "_id",
+                        "args": null,
+                        "storageKey": null
+                    },
+                    {
+                        "kind": "ScalarField",
+                        "alias": null,
                         "name": "name",
                         "args": null,
                         "storageKey": null
@@ -107,7 +115,7 @@ const node: ConcreteRequest = ({
         "operationKind": "query",
         "name": "HomeQuery",
         "id": null,
-        "text": "query HomeQuery {\n  planets {\n    ...Home_planets\n    id\n  }\n}\n\nfragment Home_planets on Planets {\n  name\n  description\n  img\n}\n",
+        "text": "query HomeQuery {\n  planets {\n    ...Home_planets\n    id\n  }\n}\n\nfragment Home_planets on Planets {\n  _id\n  name\n  description\n  img\n}\n",
         "metadata": {}
     }
 } as any);

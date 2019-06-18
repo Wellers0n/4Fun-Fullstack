@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Home = ({ history, planets }: Props) => {
-  
+
   const RenderItem = ({ value }: any) => {
     return (
       <div>
@@ -21,6 +21,7 @@ const Home = ({ history, planets }: Props) => {
         </div>
         <h1>{value.name}</h1>
         <div>{value.description}</div>
+        <button onClick={() => history.push(`detail/${value._id}`)}>Detail</button>
       </div>
     );
   };
@@ -38,6 +39,7 @@ const Home = ({ history, planets }: Props) => {
 const FragmentContainerHome = createFragmentContainer(Home, {
   planets: graphql`
     fragment Home_planets on Planets @relay(plural: true) {
+      _id
       name
       description
       img
