@@ -20,7 +20,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  height: 100px;
+  height: 70px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@ export const Header = styled.div`
 
 export const PlanetIcon = styled.i`
   color: white;
-  font-size: 5em;
+  font-size: 3em;
   display: flex;
   aligm-items: center;
   padding-left: 20px;

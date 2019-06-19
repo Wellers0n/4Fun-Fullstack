@@ -22,7 +22,6 @@ const Signup = ({ history }: RouterProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
-  const [exist, setExist] = useState("");
 
   // mutation
   const mutation = graphql`
@@ -44,13 +43,13 @@ const Signup = ({ history }: RouterProps) => {
         const msg = response.singUpMutation.msg;
         const userExist = response.singUpMutation.userExist;
         if (msg) {
-          setMsg(msg);
+          console.log('sucess create user');
           return setTimeout(() => {
             history.push("/");
           }, 1000);
         }
 
-        return setExist(userExist);
+        return setMsg(userExist);
       },
       onError: err => console.error(err)
     });
@@ -66,7 +65,6 @@ const Signup = ({ history }: RouterProps) => {
 
   return (
     <Container>
-      <Container>
         <Header>
           <PlanetIcon className="fas fa-globe-americas" />
         </Header>
@@ -106,7 +104,6 @@ const Signup = ({ history }: RouterProps) => {
         </Form>
         <MsgError msg={msg} />
       </Container>
-    </Container>
   );
 };
 

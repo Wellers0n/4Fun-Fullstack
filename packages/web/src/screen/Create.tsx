@@ -2,6 +2,18 @@ import React, { useState } from "react";
 import { graphql, commitMutation } from "react-relay";
 import Environment from "./../relay/environment";
 import { RouterProps } from "react-router";
+import Input from "./../components/Input";
+import MsgError from "./../components/MsgError";
+import Button from "./../components/Button";
+import {
+  Container,
+  Title,
+  PlanetIcon,
+  InputTitle,
+  ContainerBottom,
+  Header,
+  Form
+} from "./Login";
 
 const Signup = ({ history }: RouterProps) => {
   // useState's
@@ -14,66 +26,82 @@ const Signup = ({ history }: RouterProps) => {
   // mutation
   const mutation = graphql`
     mutation CreateMutation($input: createPlanetMutationInput!) {
-        createPlanetMutation(input: $input) {
+      createPlanetMutation(input: $input) {
         success
         error
       }
     }
   `;
 
-  const registrePlanet = () => {
+  const registrePlanet = (e: any) => {
+    e.preventDefault();
     commitMutation(Environment, {
       mutation,
       variables: { input: { name, description, img } },
       onCompleted: (response, errors) => {
         if (errors) return console.log(errors);
         const success = response.createPlanetMutation.success;
-        const error = response.createPlanetMutation.error;
+
         if (success) {
-          setMsg(success);
+          console.log("success");
           return setTimeout(() => {
             history.push("/home");
           }, 800);
         }
-
-        return setExist(error);
+        return console.log("error");
       },
       onError: err => console.error(err)
     });
   };
 
+  type ValueChange = {
+    value: string;
+  };
+
+  type onChangeValue = {
+    target: ValueChange;
+  };
+
   return (
-    <div>
-      <span>
-        {/* {console.log(history)} */}
-        <div>registre</div>
-        <input
+    <Container>
+      <Header>
+        <PlanetIcon className="fas fa-globe-americas" />
+      </Header>
+      <Form onSubmit={registrePlanet}>
+        <Title>Registre Planet</Title>
+        <InputTitle>Name</InputTitle>
+        <Input
+          iconName="fas fa-globe-americas"
           type="text"
-          placeholder="name planet"
+          placeholder="Name"
           name="name"
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={(e: onChangeValue) => setName(e.target.value)}
         />
-        <input
+        <InputTitle>Description</InputTitle>
+        <Input
+          iconName="fas fa-align-left"
           type="text"
-          placeholder="description planet"
+          placeholder="Description"
           name="description"
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={(e: onChangeValue) => setDescription(e.target.value)}
         />
-        <input
+        <InputTitle>Link image</InputTitle>
+        <Input
+          iconName="fas fa-images"
           type="text"
-          placeholder="link img, ex: https://pixelsquid.com/planets.jpg"
           name="img"
+          placeholder="Link Image ex: www.google.com/img.png"
           value={img}
-          onChange={e => setImg(e.target.value)}
+          onChange={(e: onChangeValue) => setImg(e.target.value)}
         />
-        <button onClick={registrePlanet}>registre planet</button>
-        <button onClick={() => history.push('/home')}>back</button>
-
-        <div>{(msg && msg) || (exist && exist)}</div>
-      </span>
-    </div>
+        <ContainerBottom>
+          <Button onClick={() => history.push("/home")} name="Back" />
+          <Button verse type="submit" name="Registre" />
+        </ContainerBottom>
+      </Form>
+    </Container>
   );
 };
 
