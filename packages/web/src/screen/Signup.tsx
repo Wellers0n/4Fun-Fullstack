@@ -70,7 +70,7 @@ const Signup = ({ history }: RouterProps) => {
           onChange={e => setPassword(e.target.value)}
         />
         <button onClick={registre}>registre</button>
-        <button onClick={() => history.push('/')}>back</button>
+        <button onClick={() => history.push("/")}>back</button>
 
         <div>{(msg && msg) || (exist && exist)}</div>
       </span>
