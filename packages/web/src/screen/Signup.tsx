@@ -3,6 +3,18 @@ import { graphql, commitMutation } from "react-relay";
 import Environment from "./../relay/environment";
 import { RouterProps } from "react-router";
 import { SignupMutationResponse } from "./__generated__/SignupMutation.graphql";
+import Input from "./../components/Input";
+import MsgError from "./../components/MsgError";
+import Button from "./../components/Button";
+import {
+  Container,
+  Title,
+  PlanetIcon,
+  InputTitle,
+  ContainerBottom,
+  Header,
+  Form
+} from "./Login";
 
 const Signup = ({ history }: RouterProps) => {
   // useState's
@@ -22,7 +34,8 @@ const Signup = ({ history }: RouterProps) => {
     }
   `;
 
-  const registre = () => {
+  const registre = (e:any) => {
+    e.preventDefault()
     commitMutation(Environment, {
       mutation,
       variables: { input: { name, email, password } },
@@ -43,38 +56,57 @@ const Signup = ({ history }: RouterProps) => {
     });
   };
 
-  return (
-    <div>
-      <span>
-        {/* {console.log(history)} */}
-        <div>registre</div>
-        <input
-          type="text"
-          name="name"
-          placeholder="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="email"
-          name="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          name="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <button onClick={registre}>registre</button>
-        <button onClick={() => history.push("/")}>back</button>
+  type ValueChange = {
+    value: string;
+  };
 
-        <div>{(msg && msg) || (exist && exist)}</div>
-      </span>
-    </div>
+  type onChangeValue = {
+    target: ValueChange;
+  };
+
+  return (
+    <Container>
+      <Container>
+        <Header>
+          <PlanetIcon className="fas fa-globe-americas" />
+        </Header>
+        <Form onSubmit={registre}>
+          <Title>Registre</Title>
+          <InputTitle>Name</InputTitle>
+          <Input
+            iconName="fas fa-user"
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={(e: onChangeValue) => setName(e.target.value)}
+          />
+          <InputTitle>E-mail</InputTitle>
+          <Input
+            iconName="fas fa-envelope"
+            type="email"
+            placeholder="E-mail"
+            name="email"
+            value={email}
+            onChange={(e: onChangeValue) => setEmail(e.target.value)}
+          />
+          <InputTitle>Password</InputTitle>
+          <Input
+            iconName="fas fa-unlock-alt"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e: onChangeValue) => setPassword(e.target.value)}
+          />
+          <ContainerBottom>
+            <Button onClick={() => history.push("/")} name="Back" />
+            <Button verse type="submit" name="Registre" />
+          </ContainerBottom>
+        </Form>
+        <MsgError msg={msg} />
+      </Container>
+    </Container>
   );
 };
 
