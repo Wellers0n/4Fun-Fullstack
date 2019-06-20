@@ -1,10 +1,46 @@
 import * as React from "react";
 import { graphql, QueryRenderer, createFragmentContainer } from "react-relay";
-// import styled from "styled-components";
-import Environment from "./../relay/environment";
+import styled from "styled-components";
+import ButtonDetail from "./../components/Button";
 import createQueryRenderer from "./../relay/createQueryRenderer";
 import { Home_planets } from "./__generated__/Home_planets.graphql";
-// import { RouterProps } from "react-router";
+// import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Add, Navigation } from "@material-ui/icons";
+import {
+  Icon,
+  Fab,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography
+} from "@material-ui/core";
+
+const Button = styled(Fab)`
+  && {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  background: #272425;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+`;
+
+const ContainerCard = styled.div`
+  width: 400px;
+  height: 500px
+`
+
+
 
 type Props = {
   planets: Home_planets;
@@ -12,27 +48,44 @@ type Props = {
 };
 
 const Home = ({ history, planets }: Props) => {
+  // const classes = useStyles();
 
   const RenderItem = ({ value }: any) => {
     return (
-      <div>
-        <div>
-          <img src={value.img} alt="planet" width={200} height={200} />
-        </div>
-        <h1>{value.name}</h1>
-        <div>{value.description}</div>
-        <button onClick={() => history.push(`detail/${value._id}`)}>Detail</button>
-      </div>
+      <Card  style={{marginBottom: '10px'}} onClick={() => history.push(`detail/${value._id}`)}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Planet"
+            width="50"
+            height="150"
+            image={value.img}
+            title="planet"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {value.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {value.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
     );
   };
 
   return (
-    <div>
-      {planets.map((value, i) => (
-        <RenderItem value={value} key={i} />
-      ))}
-      <button onClick={() => history.push("/create")}>registre planet</button>
-    </div>
+      <Container>
+        <ContainerCard>
+        {planets.map((value, i) => (
+          <RenderItem value={value} key={i} />
+        ))}
+        </ContainerCard>
+      <Button color="primary" onClick={() => history.push("/create")}>
+        <Add />
+      </Button>
+    </Container>
   );
 };
 

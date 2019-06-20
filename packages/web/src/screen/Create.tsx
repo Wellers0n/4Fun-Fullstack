@@ -64,9 +64,6 @@ const Signup = ({ history }: RouterProps) => {
 
   return (
     <Container>
-      <Header>
-        <PlanetIcon className="fas fa-globe-americas" />
-      </Header>
       <Form onSubmit={registrePlanet}>
         <Title>Registre Planet</Title>
         <InputTitle>Name</InputTitle>

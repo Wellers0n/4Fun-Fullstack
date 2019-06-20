@@ -20,10 +20,10 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  height: 70px;
-  width: 100%;
   display: flex;
+  height: 70px;
   align-items: center;
+  justify-content: center;
 `;
 
 export const PlanetIcon = styled.i`
@@ -31,7 +31,6 @@ export const PlanetIcon = styled.i`
   font-size: 3em;
   display: flex;
   aligm-items: center;
-  padding-left: 20px;
 `;
 
 export const Form = styled.form`
@@ -41,15 +40,12 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 25px 0px;
-  width: 400px;
   position: relative;
   overflow: hidden;
 `;
 
 export const Title = styled.span`
   font-size: 2.5rem;
-  width: 350px;
   font-family: "Nunito", sans-serif;
   font-weight: bold;
   padding: 30px 0px;
