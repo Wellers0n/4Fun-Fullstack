@@ -1,17 +1,14 @@
 import "@babel/polyfill";
 import { createServer } from "http";
-import { execute, subscribe } from "graphql";
 
 import app from "./server";
 import connectDatabase from "./database";
 
-import schema from "./schema";
-
 (async () => {
   try {
+    console.log('test 1')
     await connectDatabase();
   } catch (error) {
-    console.log('teste')
     console.log("Could not connect to database", { error });
     throw error;
   }
@@ -25,12 +22,3 @@ import schema from "./schema";
   });
 })();
 
-// let currentApp = app;
-
-// if (module.hot) {
-//   module.hot.accept('./index.js', () => {
-//     app.removeListener('request', currentApp);
-//     app.on('request', app);
-//     currentApp = app;
-//   });
-// }
