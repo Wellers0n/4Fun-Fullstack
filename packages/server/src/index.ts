@@ -1,11 +1,8 @@
 import "@babel/polyfill";
 import { createServer } from "http";
-import { execute, subscribe } from "graphql";
 
 import app from "./server";
 import connectDatabase from "./database";
-
-import schema from "./schema";
 
 (async () => {
   try {
@@ -24,12 +21,3 @@ import schema from "./schema";
   });
 })();
 
-// let currentApp = app;
-
-// if (module.hot) {
-//   module.hot.accept('./index.js', () => {
-//     app.removeListener('request', currentApp);
-//     app.on('request', app);
-//     currentApp = app;
-//   });
-// }

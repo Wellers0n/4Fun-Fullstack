@@ -7,9 +7,9 @@ import cors from 'kcors'
 import dotenv from 'dotenv-safe'
 const graphqlHTTP = require("koa-graphql");
 import schema from './schema'
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import { getUser } from './auth'
-import database from './database';
+// import database from './database';
 
 
 // init router and koa
