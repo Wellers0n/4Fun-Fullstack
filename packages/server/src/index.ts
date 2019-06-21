@@ -3,7 +3,6 @@ import { createServer } from "http";
 
 import app from "./server";
 import connectDatabase from "./database";
-import console = require("console");
 
 (async () => {
   try {
