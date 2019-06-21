@@ -76,7 +76,7 @@ const Login = ({ history }: RouterProps) => {
   const [msg, setMsg] = useState("");
 
   const mutation = graphql`
-    mutation LoginQuery($input: UserLoginWithEmailInput!) {
+    mutation LoginQuery($input: singInMutationInput!) {
       signInMutation(input: $input) {
         token
         error

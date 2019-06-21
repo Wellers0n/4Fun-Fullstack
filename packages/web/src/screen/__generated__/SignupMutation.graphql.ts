@@ -1,14 +1,14 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type SingUpUserLoginWithEmailInput = {
+export type SingUpMutationInput = {
     readonly name: string;
     readonly email: string;
     readonly password: string;
     readonly clientMutationId?: string | null;
 };
 export type SignupMutationVariables = {
-    readonly input: SingUpUserLoginWithEmailInput;
+    readonly input: SingUpMutationInput;
 };
 export type SignupMutationResponse = {
     readonly singUpMutation: {
@@ -25,7 +25,7 @@ export type SignupMutation = {
 
 /*
 mutation SignupMutation(
-  $input: SingUpUserLoginWithEmailInput!
+  $input: SingUpMutationInput!
 ) {
   singUpMutation(input: $input) {
     msg
@@ -39,7 +39,7 @@ const node: ConcreteRequest = (function () {
         ({
             "kind": "LocalArgument",
             "name": "input",
-            "type": "SingUpUserLoginWithEmailInput!",
+            "type": "SingUpMutationInput!",
             "defaultValue": null
         } as any)
     ], v1 = [
@@ -53,10 +53,10 @@ const node: ConcreteRequest = (function () {
                     "kind": "Variable",
                     "name": "input",
                     "variableName": "input",
-                    "type": "SingUpUserLoginWithEmailInput!"
+                    "type": "SingUpMutationInput!"
                 }
             ],
-            "concreteType": "SingUpUserLoginWithEmailPayload",
+            "concreteType": "SingUpMutationPayload",
             "plural": false,
             "selections": [
                 {
@@ -96,10 +96,10 @@ const node: ConcreteRequest = (function () {
             "operationKind": "mutation",
             "name": "SignupMutation",
             "id": null,
-            "text": "mutation SignupMutation(\n  $input: SingUpUserLoginWithEmailInput!\n) {\n  singUpMutation(input: $input) {\n    msg\n    userExist\n  }\n}\n",
+            "text": "mutation SignupMutation(\n  $input: SingUpMutationInput!\n) {\n  singUpMutation(input: $input) {\n    msg\n    userExist\n  }\n}\n",
             "metadata": {}
         }
     } as any;
 })();
-(node as any).hash = '3186729c27259fbbc864a3469753bfea';
+(node as any).hash = 'b2113868fb4e9efc13571c2db0c455b8';
 export default node;

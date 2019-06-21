@@ -25,7 +25,7 @@ const Signup = ({ history }: RouterProps) => {
 
   // mutation
   const mutation = graphql`
-    mutation SignupMutation($input: SingUpUserLoginWithEmailInput!) {
+    mutation SignupMutation($input: SingUpMutationInput!) {
       singUpMutation(input: $input) {
         msg
         userExist

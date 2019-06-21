@@ -1,13 +1,13 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type UserLoginWithEmailInput = {
+export type singInMutationInput = {
     readonly email: string;
     readonly password: string;
     readonly clientMutationId?: string | null;
 };
 export type LoginQueryVariables = {
-    readonly input: UserLoginWithEmailInput;
+    readonly input: singInMutationInput;
 };
 export type LoginQueryResponse = {
     readonly signInMutation: {
@@ -24,7 +24,7 @@ export type LoginQuery = {
 
 /*
 mutation LoginQuery(
-  $input: UserLoginWithEmailInput!
+  $input: singInMutationInput!
 ) {
   signInMutation(input: $input) {
     token
@@ -38,7 +38,7 @@ const node: ConcreteRequest = (function () {
         ({
             "kind": "LocalArgument",
             "name": "input",
-            "type": "UserLoginWithEmailInput!",
+            "type": "singInMutationInput!",
             "defaultValue": null
         } as any)
     ], v1 = [
@@ -52,10 +52,10 @@ const node: ConcreteRequest = (function () {
                     "kind": "Variable",
                     "name": "input",
                     "variableName": "input",
-                    "type": "UserLoginWithEmailInput!"
+                    "type": "singInMutationInput!"
                 }
             ],
-            "concreteType": "UserLoginWithEmailPayload",
+            "concreteType": "singInMutationPayload",
             "plural": false,
             "selections": [
                 {
@@ -95,10 +95,10 @@ const node: ConcreteRequest = (function () {
             "operationKind": "mutation",
             "name": "LoginQuery",
             "id": null,
-            "text": "mutation LoginQuery(\n  $input: UserLoginWithEmailInput!\n) {\n  signInMutation(input: $input) {\n    token\n    error\n  }\n}\n",
+            "text": "mutation LoginQuery(\n  $input: singInMutationInput!\n) {\n  signInMutation(input: $input) {\n    token\n    error\n  }\n}\n",
             "metadata": {}
         }
     } as any;
 })();
-(node as any).hash = '9379f62fdbea93a70735be993e8d1772';
+(node as any).hash = '1f82617a2f2f60a359cb0a6777053bfe';
 export default node;

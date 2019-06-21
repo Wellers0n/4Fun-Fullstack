@@ -16,31 +16,41 @@ import {
   Typography
 } from "@material-ui/core";
 
-const Button = styled(Fab)`
-  && {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-  }
-`;
-
 const Container = styled.div`
-  width: 100%;
   height: 100vh;
   background: #272425;
-  overflow: auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
- 
 `;
 
 const ContainerCard = styled.div`
-  width: 400px;
-  height: 500px
-`
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  align-items: stretch;
+  jusitfy-content:stretch;
+  margin-bottom: 10px;
+`;
 
+const CardMain = styled(Card)`
+  && {
+    width: 32%;
+    margin: 5px;
+  }
+`;
 
+const Button = styled(Fab)`
+  && {
+    position: absolute;
+    right: 35px;
+    bottom: 20px;
+    background: gray;
+    color: white;
+  }
+
+  &&:hover {
+    background: gray;
+  }
+`;
 
 type Props = {
   planets: Home_planets;
@@ -52,7 +62,7 @@ const Home = ({ history, planets }: Props) => {
 
   const RenderItem = ({ value }: any) => {
     return (
-      <Card  style={{marginBottom: '10px'}} onClick={() => history.push(`detail/${value._id}`)}>
+      <CardMain onClick={() => history.push(`detail/${value._id}`)}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -71,17 +81,17 @@ const Home = ({ history, planets }: Props) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-      </Card>
+      </CardMain>
     );
   };
 
   return (
-      <Container>
-        <ContainerCard>
+    <Container>
+      <ContainerCard>
         {planets.map((value, i) => (
           <RenderItem value={value} key={i} />
         ))}
-        </ContainerCard>
+      </ContainerCard>
       <Button color="primary" onClick={() => history.push("/create")}>
         <Add />
       </Button>

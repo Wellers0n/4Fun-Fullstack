@@ -1,5 +1,5 @@
 # source: http://localhost:5000/graphql
-# timestamp: Mon Jun 17 2019 11:52:58 GMT-0300 (Brasilia Standard Time)
+# timestamp: Fri Jun 21 2019 01:23:28 GMT-0300 (Brasilia Standard Time)
 
 schema {
   query: QueryType
@@ -20,8 +20,8 @@ type createPlanetMutationPayload {
 }
 
 type MutationType {
-  signInMutation(input: UserLoginWithEmailInput!): UserLoginWithEmailPayload
-  singUpMutation(input: SingUpUserLoginWithEmailInput!): SingUpUserLoginWithEmailPayload
+  signInMutation(input: singInMutationInput!): singInMutationPayload
+  singUpMutation(input: SingUpMutationInput!): SingUpMutationPayload
   createPlanetMutation(input: createPlanetMutationInput!): createPlanetMutationPayload
 }
 
@@ -41,27 +41,27 @@ type QueryType {
   planets: [Planets]
 }
 
-input SingUpUserLoginWithEmailInput {
+input singInMutationInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type singInMutationPayload {
+  token: String
+  error: String
+  clientMutationId: String
+}
+
+input SingUpMutationInput {
   name: String!
   email: String!
   password: String!
   clientMutationId: String
 }
 
-type SingUpUserLoginWithEmailPayload {
+type SingUpMutationPayload {
   msg: String
   userExist: String
-  clientMutationId: String
-}
-
-input UserLoginWithEmailInput {
-  email: String!
-  password: String!
-  clientMutationId: String
-}
-
-type UserLoginWithEmailPayload {
-  token: String
-  error: String
   clientMutationId: String
 }
