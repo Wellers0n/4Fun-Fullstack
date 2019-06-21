@@ -9,6 +9,7 @@ const graphqlHTTP = require("koa-graphql");
 import schema from './schema'
 import mongoose from 'mongoose';
 import { getUser } from './auth'
+import database from './database';
 
 
 // init router and koa
@@ -24,10 +25,6 @@ app.use(json())
 app.use(bodyparser())
 app.use(router.routes())
 app.use(router.allowedMethods());
-
-// init mongoose
-mongoose.connect('mongodb+srv://test:test@cluster0-fpizt.mongodb.net/planet?retryWrites=true&w=majority', { useNewUrlParser: true })
-// mongoose.connect('mongodb://localhost:27017/planet', { useNewUrlParser: true });
 
 const graphqlSettingsPerReq = async (req: Request) => {
     const { user } = await getUser(req.header.authorization);
@@ -55,7 +52,8 @@ const graphqlServer = graphqlHTTP(graphqlSettingsPerReq);
 
 router.all('/graphql', graphqlServer)
 
-app.listen(process.env.PORT || 5000, () => {
-    return console.log(`SERVER ON: http://localhost:${process.env.PORT || 5000}/graphql`)
-})
+// app.listen(process.env.PORT || 5000, () => {
+//     return console.log(`SERVER ON: http://localhost:${process.env.PORT || 5000}/graphql`)
+// })
 
+export default app

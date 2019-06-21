@@ -4,7 +4,7 @@ import { mutationWithClientMutationId } from 'graphql-relay';
 import { generateToken } from '../../../auth'
 
 export default mutationWithClientMutationId({
-    name: "UserLoginWithEmail",
+    name: "singInMutation",
     inputFields: {
         email: {
             type: new GraphQLNonNull(GraphQLString)

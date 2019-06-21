@@ -1,5 +1,5 @@
 # source: http://localhost:5000/graphql
-# timestamp: Fri Jun 21 2019 01:23:28 GMT-0300 (Brasilia Standard Time)
+# timestamp: Fri Jun 21 2019 11:49:46 GMT-0300 (Brasilia Standard Time)
 
 schema {
   query: QueryType
