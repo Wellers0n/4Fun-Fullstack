@@ -4,7 +4,14 @@ import styled from "styled-components";
 import createQueryRenderer from "./../relay/createQueryRenderer";
 import { DetailPlanet_planet } from "./__generated__/DetailPlanet_planet.graphql";
 import { RouteComponentProps } from "react-router";
-import { Button } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography
+} from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 
 type Props = {
@@ -19,6 +26,9 @@ type PropsRouter = {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  background: #272425;
+
 `;
 
 const Header = styled.div`
@@ -28,8 +38,20 @@ const Header = styled.div`
 `;
 
 const ButtonMain = styled(Button)`
+  && {
+    color: white;
+  }
+`;
+
+const ContainerCard = styled.div`
+  display: flex;
+  margin: 20px 0px;
+  justify-content:center;
+`
+
+const CardMain = styled(Card)`
   &&{
-    // background:red
+    width: 50%;
   }
 `
 
@@ -41,12 +63,28 @@ const DetailPlanet = ({ history, planet }: Props) => {
           <ArrowBack />
         </ButtonMain>
       </Header>
-      <div>
-        <img src={planet.img} alt="planet" width={200} height={200} />
-      </div>
-      <h1>{planet.name}</h1>
-      <div>{planet.description}</div>
-      <button >back</button>
+      <ContainerCard>
+        <CardMain>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="Planet"
+              width="50"
+              height="150"
+              image={planet.img}
+              title="planet"
+            />
+          </CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {planet.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {planet.description}
+            </Typography>
+          </CardContent>
+        </CardMain>
+      </ContainerCard>
     </Container>
   );
 };
