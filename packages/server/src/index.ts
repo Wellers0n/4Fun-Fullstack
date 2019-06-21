@@ -1,6 +1,5 @@
 import "@babel/polyfill";
 import { createServer } from "http";
-
 import app from "./server";
 import connectDatabase from "./database";
 
