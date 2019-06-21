@@ -9,7 +9,9 @@ import console = require("console");
   try {
     await connectDatabase();
   } catch (error) {
+    console.log('teste');
     console.log('teste')
+
     console.log("Could not connect to database", { error });
     throw error;
   }
