@@ -11,6 +11,7 @@ import schema from "./schema";
   try {
     await connectDatabase();
   } catch (error) {
+    console.log('teste')
     console.log("Could not connect to database", { error });
     throw error;
   }
