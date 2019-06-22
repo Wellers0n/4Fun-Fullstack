@@ -5,11 +5,16 @@
     <img src="https://img.shields.io/github/package-json/v/wellers0n/4fun-fullstack.svg"/>
     <img src="https://img.shields.io/github/last-commit/wellers0n/4fun-fullstack.svg"/>
     <img src="https://img.shields.io/github/license/wellers0n/4fun-fullstack.svg"/>
+    <img src="https://img.shields.io/twitter/follow/wellers0n_.svg?style=social"/>
 </p>
 
-# Consuming a list of products done in GraphQL with RelayJS
-
-  - Starting with GraphQL and RelayJS
+# 4Fun-Fullstack 
+    ### fullstack javascript
+    
+    4Fun uses a stack full `JS` on the frontend and backend.
+    I'm make this project to improve my skills so much in the
+    backend and too in frontend
+  
   
 # Initing in the your PC
 
