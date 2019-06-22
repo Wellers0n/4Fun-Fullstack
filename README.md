@@ -2,7 +2,7 @@
     <img src="./4fun.png" height="130"/>
 </p>
 <p align="center">
-    <img src="https://img.shields.io/github/package-json/v/wellers0n/4Fun-Fullstack.svg"/>
+    <img src="https://img.shields.io/github/package-json/v/wellers0n/4fun-fullstack.svg"/>
     <img src="https://img.shields.io/github/last-commit/wellers0n/4fun-fullstack.svg"/>
     <img src="https://img.shields.io/github/license/wellers0n/4fun-fullstack.svg"/>
 </p>
