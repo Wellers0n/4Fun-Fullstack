@@ -92,7 +92,7 @@ const Home = ({ history, planets }: Props) => {
           <RenderItem value={value} key={i} />
         ))}
       </ContainerCard>
-      <Button color="primary" onClick={() => history.push("/create")}>
+      <Button color="primary" onClick={() => history.push("/create/planet")}>
         <Add />
       </Button>
     </Container>
