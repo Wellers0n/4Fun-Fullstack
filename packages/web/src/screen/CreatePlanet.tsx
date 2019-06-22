@@ -45,7 +45,7 @@ const Signup = ({ history }: RouterProps) => {
         if (success) {
           console.log("success");
           return setTimeout(() => {
-            history.push("/create/planet");
+            history.push("/home");
           }, 800);
         }
         return console.log("error");
