@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { graphql, commitMutation } from "react-relay";
-import Environment from "./../relay/environment";
+import Environment from "../relay/environment";
 import { RouterProps } from "react-router";
-import Input from "./../components/Input";
-import MsgError from "./../components/MsgError";
-import Button from "./../components/Button";
+import Input from "../components/Input";
+// import MsgError from "../components/MsgError";
+import Button from "../components/Button";
 import {
   Container,
   Title,
