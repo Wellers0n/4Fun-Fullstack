@@ -9,12 +9,11 @@
 </p>
 
 # 4Fun-Fullstack 
-    ### fullstack javascript
-    
-    4Fun uses a stack full `JS` on the frontend and backend.
-    I'm make this project to improve my skills so much in the
-    backend and too in frontend
+  ### fullstack javascript  
   
+   4Fun uses a stack full `JS` on the frontend and backend,
+   I'm make this project to improve my skills so much in the
+   backend and too in frontend.
   
 # Initing in the your PC
 
