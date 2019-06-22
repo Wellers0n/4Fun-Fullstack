@@ -1,5 +1,6 @@
-<img align="center" src="./4fun.png"/>
-
+<p align="center">
+    <img src="./4fun.png" height="130"/>
+</p>
 # Consuming a list of products done in GraphQL with RelayJS
 
   - Starting with GraphQL and RelayJS
