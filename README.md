@@ -16,20 +16,20 @@
     
 <br/>
 
-### fullstack javascript  
+## fullstack javascript  
   
    4Fun uses a stack full `JS` on the frontend and backend,
    I'm make this project to improve my skills so much in the
    backend and too in frontend.
   
-### Initing in the your PC
+## Initing in the your PC
 
 - For clone the project `git clone https://github.com/Wellers0n/4Fun-Fullstack.git`
 - Enter in the folder `cd 4Fun-Fullstack/`
 - To install project dependency: `yarn install`
 - After the installation of the dependencies `yarn start` in the default directory
 
-### Stack used
+## Stack used
 
 [ReactJS](https://reactjs.org/)<br/>
 [React-Native](https://facebook.github.io/react-native/)<br/>
