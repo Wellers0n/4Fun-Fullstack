@@ -10,9 +10,9 @@
     </a>
 </p>
 
-<h1 align="center">
-   4Fun-Fullstack
-<h1/>
+<p align="center">
+   <h1>4Fun-Fullstack</h1>
+<p/>
     
 <br/>
 
