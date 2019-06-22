@@ -1,12 +1,10 @@
 import "@babel/polyfill";
 import { createServer } from "http";
-
 import app from "./server";
 import connectDatabase from "./database";
 
 (async () => {
   try {
-    console.log('test 1')
     await connectDatabase();
   } catch (error) {
     console.log("Could not connect to database", { error });
