@@ -18,9 +18,8 @@
 
 ## fullstack javascript  
   
-   4Fun uses a stack full `JS` on the frontend and backend,
-   I'm make this project to improve my skills so much in the
-   backend and too in frontend.
+  4Fun uses a stack full `JS/TS` on the frontend and backend, I'm making this project to improve
+  my skills so much in the backend and too in frontend.
   
 ## Initing in the your PC
 
