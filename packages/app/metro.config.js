@@ -5,52 +5,16 @@
  * @format
  */
 
-const path = require("path");
-const { FileStore } = require("metro-cache");
-const getWorkspaces = require("get-yarn-workspaces");
-const blacklist = require("metro-config/src/defaults/blacklist");
-
-const workspaces = getWorkspaces(__dirname);
+const path = require('path');
 
 module.exports = {
-  projectRoot: path.resolve(__dirname, "."),
-
-  watchFolders: [path.resolve(__dirname, "../../node_modules"), ...workspaces],
-  
-  resolver: {
-    blacklistRE: blacklist(
-      workspaces
-        .filter(workspacePath => workspacePath.indexOf("packages/app") === -1)
-        .map(
-          workspacePath =>
-            new RegExp(
-              `^${escape(
-                path.resolve(__dirname, workspacePath, "node_modules")
-              )}\\/.*$`
-            )
-        )
-    ),
-    // https://github.com/facebook/metro/issues/1#issuecomment-453450709
-    extraNodeModules: new Proxy(
-      {},
-      {
-        get: (target, name) => path.join(process.cwd(), `node_modules/${name}`)
-      }
-    )
-  },
-
+  watchFolders: [path.resolve(__dirname, '../../node_modules')],
   transformer: {
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: false
-      }
-    })
+        inlineRequires: false,
+      },
+    }),
   },
-
-  cacheStores: [
-    new FileStore({
-      root: path.join(__dirname, "metro-cache")
-    })
-  ]
 };

@@ -4,7 +4,6 @@
 
 # Xcode
 #
-metro-cache
 build/
 *.pbxuser
 !default.pbxuser
