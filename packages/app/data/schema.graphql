@@ -1,0 +1,67 @@
+# source: http://localhost:5000/graphql
+# timestamp: Thu Jun 27 2019 00:04:56 GMT-0300 (GMT-03:00)
+
+schema {
+  query: QueryType
+  mutation: MutationType
+}
+
+input createPlanetMutationInput {
+  name: String!
+  description: String!
+  img: String!
+  clientMutationId: String
+}
+
+type createPlanetMutationPayload {
+  success: String
+  error: String
+  clientMutationId: String
+}
+
+type MutationType {
+  signInMutation(input: singInMutationInput!): singInMutationPayload
+  singUpMutation(input: SingUpMutationInput!): SingUpMutationPayload
+  createPlanetMutation(input: createPlanetMutationInput!): createPlanetMutationPayload
+}
+
+type Planets {
+  """The ID of an object"""
+  id: ID!
+  _id: ID
+  name: String
+  img: String
+  description: String
+  idUser: String
+}
+
+"""Get planets[] and planet"""
+type QueryType {
+  planet(id: ID!): Planets
+  planets: [Planets]
+}
+
+input singInMutationInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type singInMutationPayload {
+  token: String
+  error: String
+  clientMutationId: String
+}
+
+input SingUpMutationInput {
+  name: String!
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type SingUpMutationPayload {
+  msg: String
+  userExist: String
+  clientMutationId: String
+}
