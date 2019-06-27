@@ -1,6 +1,5 @@
-import { RequestNode } from "relay-runtime";
+import { RequestNode, Variables } from "relay-runtime";
 import { AsyncStorage } from "react-native";
-import { Variables } from "react-relay";
 
 export const TOKEN_KEY = "token";
 
@@ -19,7 +18,7 @@ const fetchQuery = async (request: RequestNode, variables: Variables) => {
     variables
   });
 
-  const headers: object = {
+  const headers = {
     Accept: "application/json",
     "Content-type": "application/json",
     Authorization: getToken()
