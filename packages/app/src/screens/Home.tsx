@@ -8,14 +8,15 @@
  * @format
  */
 
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Alert } from "react-native";
 import { Form, Item, Label, Text, Button } from "native-base";
 import styled from "styled-components";
 import Input from "./../components/input";
 
 const ContainerButton = styled(View)`
   background: red;
+  margin-top: 30px;
 `;
 
 const Container = styled(View)`
@@ -23,23 +24,41 @@ const Container = styled(View)`
   height: 100%;
   justify-content: center;
   align-items: center;
-  background: yellow;
 `;
 
 const ContainerForm = styled(Form)`
   display: flex;
-  background: green;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 `;
 
 const Home = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function _inputChange(email: any, password: any) {
+    setEmail(email);
+    setPassword(password);
+    Alert.alert(password)
+  }
   return (
     <Container>
       <ContainerForm>
-        <Input nameInput="Email" />
-        <Input nameInput="Password" secureTextEntry={true} />
+        <Input
+          nameInput="Email"
+          value={email}
+          onChangeText={(value: any) => _inputChange(value, null)}
+        />
+        <Input
+          nameInput="Password"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={(value: any) => _inputChange(null, value)}
+        />
         <ContainerButton>
           <Button primary>
-            <Text> Primary </Text>
+            <Text> Login </Text>
           </Button>
         </ContainerButton>
       </ContainerForm>

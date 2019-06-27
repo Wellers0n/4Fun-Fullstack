@@ -3,7 +3,7 @@ import { Input, Label, Item } from "native-base";
 
 const ContainerInput = ({nameInput, ...rest}:any) => {
   return (
-    <Item floatingLabel>
+    <Item floatingLabel last>
       <Label>{nameInput}</Label>
       <Input {...rest} />
     </Item>
