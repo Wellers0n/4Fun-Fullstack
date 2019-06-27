@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "graphql-app": {
+      "schemaPath": "schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "graphql": {
+            "url": "http://localhost:5000/graphql",
+            "subscription": "graphql api"
+          }
+        }
+      }
+    }
+  }
+}

@@ -10,14 +10,20 @@
 
 import React, { Component } from "react";
 import { createAppContainer, createStackNavigator } from "react-navigation";
-import HomeScreen from './screens/Home'
+import LoginScreen, { navigationOptionsLogin } from "./screens/Login";
+import HomeScreen, { navigationOptionsHome } from "./screens/Home";
 
 const Root = createStackNavigator({
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: navigationOptionsLogin
+  },
   Home: {
-    screen: HomeScreen 
+    screen: HomeScreen,
+    navigationOptions: navigationOptionsHome
   }
-})
+});
 
-const RootContainer = createAppContainer(Root)
+const RootContainer = createAppContainer(Root);
 
-export default RootContainer
+export default RootContainer;
