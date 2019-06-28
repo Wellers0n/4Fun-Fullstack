@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, Image, Alert } from "react-native";
+import { View, AsyncStorage, Image, Alert } from "react-native";
 import { Form } from "native-base";
 import styled from "styled-components";
 import Input from "./../components/input";
