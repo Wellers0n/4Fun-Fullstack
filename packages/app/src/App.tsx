@@ -10,17 +10,22 @@
 
 import React, { Component } from "react";
 import { createAppContainer, createStackNavigator } from "react-navigation";
-import LoginScreen, { navigationOptionsLogin } from "./screens/Login";
-import HomeScreen, { navigationOptionsHome } from "./screens/Home";
+import Login, { navigationOptionsLogin } from "./screens/Login";
+import Home, { navigationOptionsHome } from "./screens/Home";
+import Register, { navigationOptionsRegister } from "./screens/Register";
 
 const Root = createStackNavigator({
-  Login: {
-    screen: LoginScreen,
+  LoginScreen: {
+    screen: Login,
     navigationOptions: navigationOptionsLogin
   },
-  Home: {
-    screen: HomeScreen,
+  HomeScreen: {
+    screen: Home,
     navigationOptions: navigationOptionsHome
+  },
+  RegisterScreen: {
+    screen: Register,
+    navigationOptions: navigationOptionsRegister
   }
 });
 
