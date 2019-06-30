@@ -1,12 +1,21 @@
 import { RequestNode, Variables } from "relay-runtime";
-import { AsyncStorage } from "react-native";
+import { AsyncStorage, Alert } from "react-native";
 
 export const TOKEN_KEY = "token";
 
-export function getToken() {
-  // get token from cookie or session token instead
-  return AsyncStorage.getItem(TOKEN_KEY);
-}
+const _retrieveData = async () => {
+  try {
+    const value = await  AsyncStorage.getItem(TOKEN_KEY);
+    if (value !== null) {
+      // We have data!!
+      return  value;
+    }
+  } catch (error) {
+    // Error retrieving data
+    Alert.alert(error);
+  }
+};
+
 
 const config = {
   GRAPHQL_URL: "http://localhost:5000/graphql"
@@ -21,7 +30,7 @@ const fetchQuery = async (request: RequestNode, variables: Variables) => {
   const headers = {
     Accept: "application/json",
     "Content-type": "application/json",
-    Authorization: getToken()
+    Authorization:  await _retrieveData()
   };
 
   const response = await fetch(config.GRAPHQL_URL, {
