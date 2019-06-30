@@ -89,7 +89,7 @@ const Login = ({ history }: RouterProps) => {
     commitMutation(Environment, {
       mutation,
       variables: { input: { email, password } },
-      onCompleted: (response: LoginQueryResponse, errors) => {
+      onCompleted: (response: LoginQueryResponse, errors:any) => {
         if (errors) return console.log(errors);
 
         const token = response.signInMutation.token;

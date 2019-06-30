@@ -3,7 +3,7 @@ import { View, AsyncStorage, Image, Alert } from "react-native";
 import { Form } from "native-base";
 import styled from "styled-components";
 import Input from "./../components/input";
-// import { LoginQueryResponse } from "./__generated__/LoginQuery.graphql";
+import { LoginQueryResponse } from "./__generated__/LoginQuery.graphql";
 import PlanetIcon from "./../images/planet.png";
 import { graphql, commitMutation } from "react-relay";
 import Environment from "./../relay/environment";
@@ -25,7 +25,7 @@ const ContainerForm = styled(Form)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width:90%;
+  width: 90%;
 `;
 
 const ContainerButton = styled(View)`
@@ -56,8 +56,8 @@ const IconPlanet = styled(Image)`
 `;
 
 const Login = ({ navigation }: any) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("wellerson.coffee@gmail.com");
+  const [password, setPassword] = useState("123");
 
   const mutation = graphql`
     mutation LoginQuery($input: singInMutationInput!) {
@@ -68,18 +68,27 @@ const Login = ({ navigation }: any) => {
     }
   `;
 
+  const _storeData = async (token:string) => {
+    try {
+      await AsyncStorage.setItem("token", token);
+    } catch (error) {
+      // Error saving data
+      Alert.alert(error)
+    }
+  };
+
   const loginIn = () => {
     commitMutation(Environment, {
       mutation,
       variables: { input: { email, password } },
-      onCompleted: (response: any, errors: any) => {
+      onCompleted: async (response: any, errors: any) => {
         if (errors) {
           Alert.alert(errors.toString());
         }
 
         const token = response.signInMutation.token;
         if (token) {
-          AsyncStorage.setItem("token", token);
+          _storeData(token)
           return navigation.navigate("HomeScreen");
         }
         Alert.alert(response.signInMutation.error.toString());
