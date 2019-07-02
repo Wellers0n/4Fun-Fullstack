@@ -10,7 +10,9 @@ import schema from './schema'
 // import mongoose from 'mongoose';
 import { getUser } from './auth'
 // import database from './database';
+import multer from 'koa-multer';
 
+const storage = multer.memoryStorage();
 
 // init router and koa
 const app = new koa();
