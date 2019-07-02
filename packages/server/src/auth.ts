@@ -2,7 +2,6 @@
 import jwt from 'jsonwebtoken';
 import User from './model/users';
 import mongoose from 'mongoose'
-import console = require('console');
 
 export async function getUser(token: string) {
   if (!token) return { user: null };
