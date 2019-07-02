@@ -11,25 +11,27 @@ export default mutationWithClientMutationId({
     description: {
       type: new GraphQLNonNull(GraphQLString)
     },
-    img: {
-      type: new GraphQLNonNull(GraphQLString)
-    }
+    // img: {
+    //   type: new GraphQLNonNull(GraphQLString)
+    // }
   },
-  mutateAndGetPayload: async ({ name, description, img }, ctx) => {
-    console.log(ctx.user);
-    const idUser = ctx.user.id
-    const planet = await Planet.findOne({ name });
+  mutateAndGetPayload: async (props, ctx) => {
+    console.log(props)
+    // const idUser = ctx.user.id;
+    // const planet = await Planet.findOne({ name });
+    
+    // if (idUser) return { error: "user null" };
 
-    if (!planet) {
-      await Planet.create({ name, description, img, idUser});
-      return {
-        success: "Insert planet with success"
-      };
-    }
+    // if (!planet) {
+    //   await Planet.create({ name, description, img, idUser });
+    //   return {
+    //     success: "Insert planet with success"
+    //   };
+    // }
 
-    return {
-      error: "Planet exist"
-    };
+    // return {
+    //   error: "Planet exist"
+    // };
   },
   outputFields: {
     success: {

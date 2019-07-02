@@ -5,6 +5,7 @@ import { RouterProps } from "react-router";
 import Input from "../components/Input";
 // import MsgError from "../components/MsgError";
 import Button from "../components/Button";
+import { CreateMutationResponse } from "./__generated__/CreateMutation.graphql";
 import {
   Container,
   Title,
@@ -19,9 +20,9 @@ const Signup = ({ history }: RouterProps) => {
   // useState's
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [img, setImg] = useState("");
-  const [msg, setMsg] = useState("");
-  const [exist, setExist] = useState("");
+  // const [img, setImg] = useState("");
+  // const [msg, setMsg] = useState("");
+  // const [exist, setExist] = useState("");
 
   // mutation
   const mutation = graphql`
@@ -33,12 +34,16 @@ const Signup = ({ history }: RouterProps) => {
     }
   `;
 
-  const registrePlanet = (e: any) => {
+  const registrePlanet = async (e: any) => {
     e.preventDefault();
-    commitMutation(Environment, {
+    var input = document.querySelector('input[type="file"]');
+    const uploadables = { file: input.files[0] };
+
+    return commitMutation(Environment, {
       mutation,
-      variables: { input: { name, description, img } },
-      onCompleted: (response, errors) => {
+      uploadables,
+      variables: { input: { name, description /*img*/ } },
+      onCompleted: (response: CreateMutationResponse, errors: any) => {
         if (errors) return console.log(errors);
         const success = response.createPlanetMutation.success;
 
@@ -50,7 +55,7 @@ const Signup = ({ history }: RouterProps) => {
         }
         return console.log("error");
       },
-      onError: err => console.error(err)
+      onError: (err: string) => console.error(err)
     });
   };
 
@@ -64,7 +69,7 @@ const Signup = ({ history }: RouterProps) => {
 
   return (
     <Container>
-      <Form onSubmit={registrePlanet}>
+      <Form onSubmit={registrePlanet} encType="multipart/form-data">
         <Title>Registre Planet</Title>
         <InputTitle>Name</InputTitle>
         <Input
@@ -84,14 +89,24 @@ const Signup = ({ history }: RouterProps) => {
           value={description}
           onChange={(e: onChangeValue) => setDescription(e.target.value)}
         />
-        <InputTitle>Link image</InputTitle>
-        <Input
+        {/* <InputTitle>Link image</InputTitle>
+         <Input
           iconName="fas fa-images"
           type="text"
           name="img"
-          placeholder="Link Image ex: www.google.com/img.png"
+          placeholder="Image"
           value={img}
           onChange={(e: onChangeValue) => setImg(e.target.value)}
+        /> */}
+        <InputTitle>image</InputTitle>
+        <Input
+          iconName="fas fa-images"
+          type="file"
+          accept="image/*"
+          name="img"
+          placeholder="Image"
+          // value={img}
+          id="imgFetch"
         />
         <ContainerBottom>
           <Button onClick={() => history.push("/home")} name="Back" />

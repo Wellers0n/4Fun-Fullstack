@@ -40,6 +40,7 @@
     "@types/graphql": "^14.2.0",
     "@types/graphql-relay": "^0.4.9",
     "@types/jsonwebtoken": "^8.3.2",
+    "@types/koa-multer": "^1.0.0",
     "@types/mongoose": "^5.3.25",
     "dataloader": "^1.4.0",
     "dotenv-safe": "^6.1.0",
@@ -52,7 +53,10 @@
     "koa-graphql": "^0.8.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^3.2.0",
+    "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
-    "mongoose": "^5.5.6"
+    "mongoose": "^5.5.6",
+    "multer": "^1.4.1",
+    "multer-gridfs-storage": "^3.2.3"
   }
 }

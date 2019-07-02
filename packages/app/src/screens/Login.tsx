@@ -1,17 +1,34 @@
 import React, { useState } from "react";
-import { View, AsyncStorage, Image, Alert } from "react-native";
+import { AsyncStorage, View, Alert, Text } from "react-native";
 import { Form } from "native-base";
 import styled from "styled-components";
 import Input from "./../components/input";
-import { LoginQueryResponse } from "./__generated__/LoginQuery.graphql";
-import PlanetIcon from "./../images/planet.png";
 import { graphql, commitMutation } from "react-relay";
 import Environment from "./../relay/environment";
 import Button from "./../components/button";
+import Icon from "react-native-vector-icons/Ionicons";
 
-export const navigationOptionsLogin = {
-  title: "Login"
-};
+export const navigationOptionsLogin = (navigation: any) => ({
+  headerStyle: {
+    backgroundColor: "white"
+  },
+  headerTitle: (
+    <View style={{ flex: 1 }}>
+      <Text
+        style={{
+          color: "#272425",
+          fontWeight: "500",
+          fontSize: 24,
+          alignSelf: "center"
+        }}
+      >
+        Login
+      </Text>
+    </View>
+  ),
+  headerLeft: <View style={{ flex: 1 }} />,
+  headerRight: <View style={{ flex: 1 }} />
+});
 
 const Container = styled(View)`
   display: flex;
@@ -50,9 +67,10 @@ const ButtonLogin = styled(Button)`
   width: 100px;
 `;
 
-const IconPlanet = styled(Image)`
-  width: 200px;
-  height: 200px;
+const IconMeteor = styled(Icon)`
+  padding: 20px 0px;
+  font-size: 150px;
+  color: white;
 `;
 
 const Login = ({ navigation }: any) => {
@@ -68,12 +86,12 @@ const Login = ({ navigation }: any) => {
     }
   `;
 
-  const _storeData = async (token:string) => {
+  const _storeData = async (token: string) => {
     try {
       await AsyncStorage.setItem("token", token);
     } catch (error) {
       // Error saving data
-      Alert.alert(error)
+      Alert.alert(error);
     }
   };
 
@@ -88,7 +106,7 @@ const Login = ({ navigation }: any) => {
 
         const token = response.signInMutation.token;
         if (token) {
-          _storeData(token)
+          _storeData(token);
           return navigation.navigate("HomeScreen");
         }
         Alert.alert(response.signInMutation.error.toString());
@@ -110,7 +128,7 @@ const Login = ({ navigation }: any) => {
 
   return (
     <Container>
-      <IconPlanet source={PlanetIcon} />
+      <IconMeteor name="md-planet" />
       <ContainerForm>
         <Input
           tintColor="white"
