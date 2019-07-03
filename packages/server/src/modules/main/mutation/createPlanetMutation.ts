@@ -1,6 +1,7 @@
 import Planet from "../../../model/planets";
 import { GraphQLString, GraphQLNonNull } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
+import idx from 'idx';
 
 export default mutationWithClientMutationId({
   name: "createPlanetMutation",
@@ -15,8 +16,10 @@ export default mutationWithClientMutationId({
     //   type: new GraphQLNonNull(GraphQLString)
     // }
   },
-  mutateAndGetPayload: async (props, ctx) => {
-    console.log(props)
+  mutateAndGetPayload: async (args, context, options) => {
+    const img = idx(options, (_:any) => _.rootValue.request.files);
+    // const files = idx(options, _ => _.rootValue.request.files);
+    console.log(img)
     // const idUser = ctx.user.id;
     // const planet = await Planet.findOne({ name });
     
