@@ -20,7 +20,7 @@ const Signup = ({ history }: RouterProps) => {
   // useState's
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  // const [img, setImg] = useState("");
+  const [img, setImg] = useState("");
   // const [msg, setMsg] = useState("");
   // const [exist, setExist] = useState("");
 
@@ -36,13 +36,10 @@ const Signup = ({ history }: RouterProps) => {
 
   const registrePlanet = async (e: any) => {
     e.preventDefault();
-    var input = document.querySelector('input[type="file"]');
-    const uploadables = { file: input.files[0] };
 
-    return commitMutation(Environment, {
+    commitMutation(Environment, {
       mutation,
-      uploadables,
-      variables: { input: { name, description /*img*/ } },
+      variables: { input: { name, description, img } },
       onCompleted: (response: CreateMutationResponse, errors: any) => {
         if (errors) return console.log(errors);
         const success = response.createPlanetMutation.success;
@@ -69,7 +66,7 @@ const Signup = ({ history }: RouterProps) => {
 
   return (
     <Container>
-      <Form onSubmit={registrePlanet} encType="multipart/form-data">
+      <Form onSubmit={registrePlanet}>
         <Title>Registre Planet</Title>
         <InputTitle>Name</InputTitle>
         <Input
@@ -89,24 +86,14 @@ const Signup = ({ history }: RouterProps) => {
           value={description}
           onChange={(e: onChangeValue) => setDescription(e.target.value)}
         />
-        {/* <InputTitle>Link image</InputTitle>
-         <Input
+        <InputTitle>Link image</InputTitle>
+        <Input
           iconName="fas fa-images"
           type="text"
           name="img"
           placeholder="Image"
           value={img}
           onChange={(e: onChangeValue) => setImg(e.target.value)}
-        /> */}
-        <InputTitle>image</InputTitle>
-        <Input
-          iconName="fas fa-images"
-          type="file"
-          accept="image/*"
-          name="img"
-          placeholder="Image"
-          // value={img}
-          id="imgFetch"
         />
         <ContainerBottom>
           <Button onClick={() => history.push("/home")} name="Back" />

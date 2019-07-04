@@ -1,7 +1,6 @@
 import Planet from "../../../model/planets";
 import { GraphQLString, GraphQLNonNull } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
-import idx from 'idx';
 
 export default mutationWithClientMutationId({
   name: "createPlanetMutation",
@@ -12,29 +11,26 @@ export default mutationWithClientMutationId({
     description: {
       type: new GraphQLNonNull(GraphQLString)
     },
-    // img: {
-    //   type: new GraphQLNonNull(GraphQLString)
-    // }
+    img: {
+      type: new GraphQLNonNull(GraphQLString)
+    }
   },
-  mutateAndGetPayload: async (args, context, options) => {
-    const img = idx(options, (_:any) => _.rootValue.request.files);
-    // const files = idx(options, _ => _.rootValue.request.files);
-    console.log(img)
-    // const idUser = ctx.user.id;
-    // const planet = await Planet.findOne({ name });
-    
+  mutateAndGetPayload: async ({ name, description, img }, context, options) => {
+    const idUser = context.user.id;
+    const planet = await Planet.findOne({ name });
+
     // if (idUser) return { error: "user null" };
 
-    // if (!planet) {
-    //   await Planet.create({ name, description, img, idUser });
-    //   return {
-    //     success: "Insert planet with success"
-    //   };
-    // }
+    if (!planet) {
+      await Planet.create({ name, description, img, idUser });
+      return {
+        success: "Insert planet with success"
+      };
+    }
 
-    // return {
-    //   error: "Planet exist"
-    // };
+    return {
+      error: "Planet exist"
+    };
   },
   outputFields: {
     success: {

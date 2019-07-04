@@ -58,8 +58,8 @@ const limits = {
   // Increasing max upload size to 30 mb, since busboy default is only 1 mb
   fieldSize: 30 * 1024 * 1024
 };
-router.all("/graphql", multer({ storage, limits }).any());
-router.all("/graphql", graphqlServer);
+
+router.all("/graphql", multer({ storage, limits }).any(), graphqlServer);
 
 // app.listen(process.env.PORT || 5000, () => {
 //     return console.log(`SERVER ON: http://localhost:${process.env.PORT || 5000}/graphql`)

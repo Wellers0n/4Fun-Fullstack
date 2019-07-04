@@ -37,14 +37,17 @@
   },
   "dependencies": {
     "@types/dotenv-safe": "^5.0.3",
+    "@types/form-data": "^2.2.1",
     "@types/graphql": "^14.2.0",
     "@types/graphql-relay": "^0.4.9",
     "@types/jsonwebtoken": "^8.3.2",
     "@types/koa-multer": "^1.0.0",
     "@types/mongoose": "^5.3.25",
+    "@types/node-fetch": "^2.3.7",
     "babel-plugin-idx": "^2.4.0",
     "dataloader": "^1.4.0",
     "dotenv-safe": "^6.1.0",
+    "form-data": "^2.4.0",
     "graphql": "^14.2.1",
     "graphql-relay": "^0.6.0",
     "idx": "^2.5.6",
@@ -59,6 +62,7 @@
     "koa-router": "^7.4.0",
     "mongoose": "^5.5.6",
     "multer": "^1.4.1",
-    "multer-gridfs-storage": "^3.2.3"
+    "multer-gridfs-storage": "^3.2.3",
+    "node-fetch": "^2.6.0"
   }
 }
