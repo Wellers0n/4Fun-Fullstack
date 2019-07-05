@@ -17,6 +17,7 @@ const router = () => {
                     <PrivateRouter path="/home" component={Home} />
                     <PrivateRouter path="/create/planet" component={Create} />
                     <PrivateRouter path="/detail/:id" component={Detail} />
+                    <Route component={NoMatch} />
                 </Switch>
             </div>
         </BrowserRouter>

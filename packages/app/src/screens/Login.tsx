@@ -10,13 +10,13 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export const navigationOptionsLogin = (navigation: any) => ({
   headerStyle: {
-    backgroundColor: "white"
+    backgroundColor: "#3479ff",
   },
   headerTitle: (
     <View style={{ flex: 1 }}>
       <Text
         style={{
-          color: "#272425",
+          color: "white",
           fontWeight: "500",
           fontSize: 24,
           alignSelf: "center"
@@ -31,9 +31,8 @@ export const navigationOptionsLogin = (navigation: any) => ({
 });
 
 const Container = styled(View)`
-  display: flex;
   height: 100%;
-  background: #272425;
+  background: #463064;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -146,14 +145,14 @@ const Login = ({ navigation }: any) => {
           <ButtonRegister
             light
             onPress={() => navigation.navigate("RegisterScreen")}
-            color="#272425"
+            color="#463064"
             nameButton="register"
           />
           <ButtonLogin
             light
             bordered
             onPress={loginIn}
-            color="#272425"
+            color="#463064"
             nameButton="login"
           />
         </ContainerButton>

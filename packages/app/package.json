@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start",
+    "start": "react-native start --reset-cache",
     "test": "jest",
     "clean": "yarn cache clean",
     "relay": "relay-compiler --src ./src --schema ./data/schema.graphql --language typescript  --watchman false",

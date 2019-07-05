@@ -18,8 +18,11 @@ export default mutationWithClientMutationId({
   mutateAndGetPayload: async ({ name, description, img }, context, options) => {
     const idUser = context.user.id;
     const planet = await Planet.findOne({ name });
+    if (!idUser) return { error: "User null" };
 
-    // if (idUser) return { error: "user null" };
+    if (img === "" || img == null) {
+      img = "https://semantic-ui.com/images/wireframe/image.png";
+    }
 
     if (!planet) {
       await Planet.create({ name, description, img, idUser });

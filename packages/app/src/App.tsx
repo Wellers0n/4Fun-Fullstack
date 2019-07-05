@@ -11,8 +11,13 @@
 import React, { Component } from "react";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 import Login, { navigationOptionsLogin } from "./screens/Login";
+import { YellowBox } from "react-native";
 import Home, { navigationOptionsHome } from "./screens/Home";
 import Register, { navigationOptionsRegister } from "./screens/Register";
+
+YellowBox.ignoreWarnings([
+  "Warning: Async Storage has been extracted from react-native core"
+]); // <- insert the warning text here you wish to hide.
 
 const Root = createStackNavigator({
   LoginScreen: {
