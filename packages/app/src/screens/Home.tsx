@@ -114,6 +114,15 @@ const Body = styled(View)`
   align-items: center;
 `;
 
+const ContainerIcon = styled(View)`
+  flex-direction: row;
+`;
+
+const TextIcon = styled(Text)`
+  margin-left: 5;
+  color: "#8774af";
+`;
+
 type Props = {
   planets: Home_planets;
 };
@@ -126,7 +135,11 @@ const Home = ({ planets }: Props) => {
     return (
       <ContainerCard>
         <ContainerImage>
-          <Img resizeMode="contain" borderRadius={50} source={{ uri: item.img }} />
+          <Img
+            resizeMode="cover"
+            borderRadius={50}
+            source={{ uri: item.img }}
+          />
         </ContainerImage>
         <ContainerInfo>
           <ContainerMain>
@@ -144,14 +157,18 @@ const Home = ({ planets }: Props) => {
               />
             </Head>
             <Body>
-              <View style={{ flexDirection: "row" }}>
+              <ContainerIcon>
                 <Icon source={imgDistance} resizeMode="contain" />
-                <Text style={{marginLeft:5, color:'#8774af'}}>0.7b km</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
+                <TextIcon>
+                  0.7b km
+                </TextIcon>
+              </ContainerIcon>
+              <ContainerIcon>
                 <Icon source={imgGravity} resizeMode="contain" />
-                <Text style={{marginLeft:5, color:'#8774af'}}>11.5 m/s²</Text>
-              </View>
+                <TextIcon>
+                  11.5 m/s²
+                </TextIcon>
+              </ContainerIcon>
             </Body>
           </ContainerMain>
         </ContainerInfo>
