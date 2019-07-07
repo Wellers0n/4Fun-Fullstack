@@ -12,8 +12,10 @@ import React, { Component } from "react";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 import Login, { navigationOptionsLogin } from "./screens/Login";
 import { YellowBox } from "react-native";
-import Home, { navigationOptionsHome } from "./screens/Home";
+import HomeDrawer from "./navigation/HomeDrawer";
 import Register, { navigationOptionsRegister } from "./screens/Register";
+// import Detail, { navigationOptionsDetail } from "./screens/Detail";
+
 
 YellowBox.ignoreWarnings([
   "Warning: Async Storage has been extracted from react-native core"
@@ -24,14 +26,14 @@ const Root = createStackNavigator({
     screen: Login,
     navigationOptions: navigationOptionsLogin
   },
-  HomeScreen: {
-    screen: Home,
-    navigationOptions: navigationOptionsHome
+  HomeDrawerScreen: {
+    screen: HomeDrawer,
+    navigationOptions: {header: null}
   },
   RegisterScreen: {
     screen: Register,
     navigationOptions: navigationOptionsRegister
-  }
+  },
 });
 
 const RootContainer = createAppContainer(Root);

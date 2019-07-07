@@ -106,7 +106,7 @@ const Login = ({ navigation }: any) => {
         const token = response.signInMutation.token;
         if (token) {
           _storeData(token);
-          return navigation.navigate("HomeScreen");
+          return navigation.navigate("HomeDrawerScreen");
         }
         Alert.alert(response.signInMutation.error.toString());
       },
