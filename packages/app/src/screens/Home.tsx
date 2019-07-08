@@ -98,7 +98,7 @@ const Home = (props: Props) => {
       />
       <FabButton
         style={{ borderRadius: 50 }}
-        onPress={() => navigation.navigate('DrawerToggle')}
+        onPress={() => navigation.navigate('CreatePlanetScreen')}
       >
         <FabButtonIcon name="md-add" size={30} />
       </FabButton>
