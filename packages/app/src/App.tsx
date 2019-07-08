@@ -14,8 +14,6 @@ import Login, { navigationOptionsLogin } from "./screens/Login";
 import { YellowBox } from "react-native";
 import HomeDrawer from "./navigation/HomeDrawer";
 import Register, { navigationOptionsRegister } from "./screens/Register";
-// import Detail, { navigationOptionsDetail } from "./screens/Detail";
-
 
 YellowBox.ignoreWarnings([
   "Warning: Async Storage has been extracted from react-native core"

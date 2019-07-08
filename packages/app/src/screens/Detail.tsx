@@ -1,7 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
+import styled from 'styled-components'
+import Icon from "react-native-vector-icons/Ionicons";
+import { NavigationScreenProp } from "react-navigation";
 
-export const navigationOptionsDetail = () => ({
+export const navigationOptionsDetail = ({navigation}: Props) => ({
   headerStyle: {
     backgroundColor: "#3479ff"
   },
@@ -19,11 +22,28 @@ export const navigationOptionsDetail = () => ({
       </Text>
     </View>
   ),
-  headerLeft: <View style={{ flex: 1 }} />,
+  headerLeft: (
+    <View style={{ flex: 1 }}>
+      <IconMenuLeft
+        onPress={() => navigation.goBack()}
+        color="white"
+        size={40}
+        name="md-arrow-round-back"
+      />
+    </View>
+  ),
   headerRight: <View style={{ flex: 1 }} />
 });
 
-const Detail = () => {
+const IconMenuLeft = styled(Icon)`
+  padding-left: 10px;
+`;
+
+type Props = {
+  navigation: NavigationScreenProp<any, any>;
+};
+
+const Detail = ({navigation}: Props) => {
   return (
     <View>
       <Text>Detail screen</Text>
