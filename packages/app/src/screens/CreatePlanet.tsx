@@ -69,12 +69,6 @@ const ContainerButton = styled(View)`
   align-items: center;
 `;
 
-const ButtonBack = styled(Button)`
-  margin-right: 15px;
-  justify-content: center;
-  align-items: center;
-  width: 35%;
-`;
 const ButtonRegister = styled(Button)`
   text-align: center;
   justify-content: center;
@@ -111,6 +105,13 @@ const CreatePlanet = ({ navigation }: Props) => {
       createPlanetMutation(input: $input) {
         success
         error
+        planets {
+          id
+          name
+          img
+          description
+          idUser
+        }
       }
     }
   `;
@@ -124,10 +125,7 @@ const CreatePlanet = ({ navigation }: Props) => {
           return Alert.alert(errors.toString());
         }
         if (response.createPlanetMutation.success) {
-          Alert.alert(response.createPlanetMutation.success.toString());
-          return setTimeout(() => {
-            navigation.goBack();
-          }, 500);
+          return navigation.goBack();
         }
 
         return Alert.alert(response.createPlanetMutation.error.toString());
