@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   View,
   YellowBox,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import createQueryRenderer from "./../relay/createQueryRenderer";
 import { graphql, createFragmentContainer } from "react-relay";
@@ -81,6 +82,7 @@ const Home = (props: Props) => {
   //props
   const { planets, navigation } = props;
 
+
   YellowBox.ignoreWarnings([
     "Warning: Async Storage has been extracted from react-native core"
   ]); // <- insert the warning text here you wish to hide.
@@ -88,6 +90,7 @@ const Home = (props: Props) => {
   // render
   return (
     <Container>
+      {console.log('qui')}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={planets}
@@ -98,7 +101,7 @@ const Home = (props: Props) => {
       />
       <FabButton
         style={{ borderRadius: 50 }}
-        onPress={() => navigation.navigate('CreatePlanetScreen')}
+        onPress={() => navigation.navigate("CreatePlanetScreen")}
       >
         <FabButtonIcon name="md-add" size={30} />
       </FabButton>

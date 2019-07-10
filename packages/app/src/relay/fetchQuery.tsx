@@ -1,5 +1,9 @@
-import { RequestNode, Variables } from "relay-runtime";
 import { AsyncStorage, Alert } from "react-native";
+import { RequestNode, Variables, UploadableMap, CacheConfig } from "relay-runtime";
+import {
+  getRequestBody,
+  getHeaders
+} from "./helpers";
 
 export const TOKEN_KEY = "token";
 
@@ -21,16 +25,16 @@ const config = {
   GRAPHQL_URL: "http://localhost:5000/graphql"
 };
 
-const fetchQuery = async (request: RequestNode, variables: Variables) => {
-  const body = JSON.stringify({
-    query: request.text,
-    variables
-  });
-
+const fetchQuery = async (
+  request: RequestNode,
+  variables: Variables,
+  cacheConfig: CacheConfig,
+  uploadables?: UploadableMap
+) => {
+  const body = getRequestBody(request, variables, uploadables);
   const headers = {
-    Accept: "application/json",
-    "Content-type": "application/json",
-    Authorization:  await _retrieveData()
+    ...getHeaders(uploadables),
+    Authorization: await _retrieveData()
   };
 
   const response = await fetch(config.GRAPHQL_URL, {

@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity
-} from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 import imgDistance from "./../images/ic_distance.png";
 import imgGravity from "./../images/ic_gravity.png";
 import { NavigationScreenProp } from "react-navigation";
-
-
-
 
 const ContainerCard = styled(TouchableOpacity)`
   width: 100%;
@@ -91,14 +83,16 @@ const TextIcon = styled(Text)`
 `;
 
 type Props = {
-    item:any,
-    navigation:NavigationScreenProp<any,any>
-}
+  item: any;
+  navigation: NavigationScreenProp<any, any>;
+};
 
-  // FlatList item card render()
+// FlatList item card render()
 const CardItem = ({ item, navigation }: Props) => {
   return (
-    <ContainerCard onPress={() => navigation.navigate("DetailScreen")}>
+    <ContainerCard
+      onPress={() => navigation.navigate("DetailScreen", { id: item._id })}
+    >
       <ContainerImage>
         <Img resizeMode="cover" borderRadius={50} source={{ uri: item.img }} />
       </ContainerImage>

@@ -1,14 +1,22 @@
-import {Environment, Network, Store, RecordSource} from 'relay-runtime'
-import fetchQuery from './fetchQuery'
+import { Environment, Network, Store, RecordSource } from "relay-runtime";
+import { installRelayDevTools } from "relay-devtools";
+import cacheHandler from './cacheHandler';
+import RelayNetworkLogger from 'relay-runtime/lib/RelayNetworkLogger';
 
-const network = Network.create(fetchQuery)
+if (__DEV__) {
+  installRelayDevTools();
+}
 
-const source = new RecordSource()
-const store = new Store(source)
+const network = Network.create(
+  __DEV__ ? RelayNetworkLogger.wrapFetch(cacheHandler) : cacheHandler
+);
+
+const source = new RecordSource();
+const store = new Store(source);
 
 const env = new Environment({
-    network,
-    store
-})
+  network,
+  store
+});
 
-export default env
+export default env;

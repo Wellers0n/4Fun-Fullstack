@@ -9,7 +9,6 @@ import Button from "./../components/button";
 import Icon from "react-native-vector-icons/Ionicons";
 import IconBody from "react-native-vector-icons/Entypo";
 import { NavigationScreenProp } from "react-navigation";
-import { createPlanetMutationInput } from "./__generated__/CreatePlanetQuery.graphql";
 
 // Option navigation
 export const navigationOptionsCreatePlanet = ({ navigation }: Props) => ({
@@ -105,13 +104,6 @@ const CreatePlanet = ({ navigation }: Props) => {
       createPlanetMutation(input: $input) {
         success
         error
-        planets {
-          id
-          name
-          img
-          description
-          idUser
-        }
       }
     }
   `;
@@ -125,7 +117,7 @@ const CreatePlanet = ({ navigation }: Props) => {
           return Alert.alert(errors.toString());
         }
         if (response.createPlanetMutation.success) {
-          return navigation.goBack();
+          return navigation.navigate("HomeScreen");
         }
 
         return Alert.alert(response.createPlanetMutation.error.toString());

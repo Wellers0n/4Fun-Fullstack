@@ -27,7 +27,7 @@ export const navigationOptionsDetail = ({navigation}: Props) => ({
       <IconMenuLeft
         onPress={() => navigation.goBack()}
         color="white"
-        size={40}
+        size={40} 
         name="md-arrow-round-back"
       />
     </View>
@@ -44,9 +44,12 @@ type Props = {
 };
 
 const Detail = ({navigation}: Props) => {
+
+  const itemId = navigation.getParam('id');
+
   return (
     <View>
-      <Text>Detail screen</Text>
+      <Text>{itemId.toString()}</Text>
     </View>
   );
 };
