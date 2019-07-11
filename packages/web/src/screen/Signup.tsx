@@ -33,17 +33,17 @@ const Signup = ({ history }: RouterProps) => {
     }
   `;
 
-  const registre = (e:any) => {
-    e.preventDefault()
+  const registre = (e: any) => {
+    e.preventDefault();
     commitMutation(Environment, {
       mutation,
       variables: { input: { name, email, password } },
-      onCompleted: (response: SignupMutationResponse, errors) => {
+      onCompleted: (response: SignupMutationResponse, errors: any) => {
         if (errors) return console.log(errors);
         const msg = response.singUpMutation.msg;
         const userExist = response.singUpMutation.userExist;
         if (msg) {
-          console.log('sucess create user');
+          console.log("sucess create user");
           return setTimeout(() => {
             history.push("/");
           }, 1000);
@@ -65,45 +65,45 @@ const Signup = ({ history }: RouterProps) => {
 
   return (
     <Container>
-        <Header>
-          <PlanetIcon className="fas fa-globe-americas" />
-        </Header>
-        <Form onSubmit={registre}>
-          <Title>Registre</Title>
-          <InputTitle>Name</InputTitle>
-          <Input
-            iconName="fas fa-user"
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={name}
-            onChange={(e: onChangeValue) => setName(e.target.value)}
-          />
-          <InputTitle>E-mail</InputTitle>
-          <Input
-            iconName="fas fa-envelope"
-            type="email"
-            placeholder="E-mail"
-            name="email"
-            value={email}
-            onChange={(e: onChangeValue) => setEmail(e.target.value)}
-          />
-          <InputTitle>Password</InputTitle>
-          <Input
-            iconName="fas fa-unlock-alt"
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e: onChangeValue) => setPassword(e.target.value)}
-          />
-          <ContainerBottom>
-            <Button onClick={() => history.push("/")} name="Back" />
-            <Button verse type="submit" name="Registre" />
-          </ContainerBottom>
-        </Form>
-        <MsgError msg={msg} />
-      </Container>
+      <Header>
+        <PlanetIcon className="fas fa-globe-americas" />
+      </Header>
+      <Form onSubmit={registre}>
+        <Title>Registre</Title>
+        <InputTitle>Name</InputTitle>
+        <Input
+          iconName="fas fa-user"
+          type="text"
+          placeholder="Name"
+          name="name"
+          value={name}
+          onChange={(e: onChangeValue) => setName(e.target.value)}
+        />
+        <InputTitle>E-mail</InputTitle>
+        <Input
+          iconName="fas fa-envelope"
+          type="email"
+          placeholder="E-mail"
+          name="email"
+          value={email}
+          onChange={(e: onChangeValue) => setEmail(e.target.value)}
+        />
+        <InputTitle>Password</InputTitle>
+        <Input
+          iconName="fas fa-unlock-alt"
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e: onChangeValue) => setPassword(e.target.value)}
+        />
+        <ContainerBottom>
+          <Button onClick={() => history.push("/")} name="Back" />
+          <Button verse name="Registre" type="submit" />
+        </ContainerBottom>
+      </Form>
+      <MsgError msg={msg} />
+    </Container>
   );
 };
 

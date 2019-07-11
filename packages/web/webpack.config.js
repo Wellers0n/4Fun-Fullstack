@@ -102,7 +102,7 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({template: path.resolve(__dirname, 'public', 'index.html')}),
     new webpack.NamedModulesPlugin(),
     ],
 }
