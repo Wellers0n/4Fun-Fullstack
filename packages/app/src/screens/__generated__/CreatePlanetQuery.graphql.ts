@@ -12,8 +12,13 @@ export type CreatePlanetQueryVariables = {
 };
 export type CreatePlanetQueryResponse = {
     readonly createPlanetMutation: {
-        readonly success: string | null;
         readonly error: string | null;
+        readonly planets: ReadonlyArray<{
+            readonly id: string;
+            readonly name: string | null;
+            readonly description: string | null;
+            readonly img: string | null;
+        } | null> | null;
     } | null;
 };
 export type CreatePlanetQuery = {
@@ -28,8 +33,13 @@ mutation CreatePlanetQuery(
   $input: createPlanetMutationInput!
 ) {
   createPlanetMutation(input: $input) {
-    success
     error
+    planets {
+      id
+      name
+      description
+      img
+    }
   }
 }
 */
@@ -62,16 +72,48 @@ v1 = [
       {
         "kind": "ScalarField",
         "alias": null,
-        "name": "success",
+        "name": "error",
         "args": null,
         "storageKey": null
       },
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "error",
+        "name": "planets",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
+        "concreteType": "Planets",
+        "plural": true,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "description",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "img",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -96,10 +138,10 @@ return {
     "operationKind": "mutation",
     "name": "CreatePlanetQuery",
     "id": null,
-    "text": "mutation CreatePlanetQuery(\n  $input: createPlanetMutationInput!\n) {\n  createPlanetMutation(input: $input) {\n    success\n    error\n  }\n}\n",
+    "text": "mutation CreatePlanetQuery(\n  $input: createPlanetMutationInput!\n) {\n  createPlanetMutation(input: $input) {\n    error\n    planets {\n      id\n      name\n      description\n      img\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '1f318b6afc49d9f35b2002d5861796af';
+(node as any).hash = '5c1c2ddce4695c118633106a27023739';
 export default node;

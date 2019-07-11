@@ -25,8 +25,8 @@ export default new GraphQLObjectType({
     planets: {
       type: new GraphQLList(PlanetsType),
       resolve: (parentValue, args, ctx) => {
-        const id = ctx.user.id;
-        return ctx.user ? planetsModel.find({ idUser: id }) : null;
+        // const id = ctx.user.id;
+        return planetsModel.find({});
       }
     }
   })

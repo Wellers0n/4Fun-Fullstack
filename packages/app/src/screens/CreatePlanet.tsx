@@ -102,25 +102,41 @@ const CreatePlanet = ({ navigation }: Props) => {
   const mutation = graphql`
     mutation CreatePlanetQuery($input: createPlanetMutationInput!) {
       createPlanetMutation(input: $input) {
-        success
         error
+        planets {
+          id
+          name
+          description
+          img
+        }
       }
     }
   `;
+
+  function updater(store: any) {
+    const root = store.getRoot();
+
+    const newPlanets = store
+      .getRootField("createPlanetMutation")
+      .getLinkedRecords("planets");
+
+    root.setLinkedRecords(newPlanets, "planets");
+  }
 
   const createPlanet = () => {
     commitMutation(Environment, {
       mutation,
       variables: { input: { name, description, img: image } },
+      updater,
       onCompleted: async (response: any, errors: any) => {
         if (errors) {
           return Alert.alert(errors.toString());
         }
-        if (response.createPlanetMutation.success) {
-          return navigation.navigate("HomeScreen");
+        if (!response.createPlanetMutation.planets) {
+          return Alert.alert(response.createPlanetMutation.error.toString());
         }
 
-        return Alert.alert(response.createPlanetMutation.error.toString());
+        return navigation.goBack();
       },
 
       onError: (err: any) => {
