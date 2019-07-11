@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
-  entry: ['./src/index'],
+  entry: "./src/index.tsx",
   mode: 'development',
   devtool: 'cheap-eval-source-map',
   resolve: {
@@ -102,7 +102,7 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    new HtmlWebpackPlugin({template: './public/index.html'}),
+    new HtmlWebpackPlugin(),
     new webpack.NamedModulesPlugin(),
     ],
 }

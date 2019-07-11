@@ -17,14 +17,14 @@ const router = () => {
                     <PrivateRouter path="/home" component={Home} />
                     <PrivateRouter path="/create/planet" component={Create} />
                     <PrivateRouter path="/detail/:id" component={Detail} />
-                    <Route component={NoMatch} />
+                    {/* <Route component={notFound} /> */}
                 </Switch>
             </div>
         </BrowserRouter>
     )
 }
 
-const NoMatch = () => {
+const notFound = () => {
     return (
         <div>pag not found</div>
     )

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AsyncStorage, View, Alert, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { Form } from "native-base";
 import styled from "styled-components";
 import Input from "./../components/input";
@@ -7,10 +7,11 @@ import { graphql, commitMutation } from "react-relay";
 import Environment from "./../relay/environment";
 import Button from "./../components/button";
 import Icon from "react-native-vector-icons/Ionicons";
+import IconBody from "react-native-vector-icons/Entypo";
 import { NavigationScreenProp } from "react-navigation";
 
 // Option navigation
-export const navigationOptionsRegister = ({navigation}: Props) => ({
+export const navigationOptionsCreatePlanet = ({ navigation }: Props) => ({
   headerStyle: {
     backgroundColor: "#3479ff"
   },
@@ -24,7 +25,7 @@ export const navigationOptionsRegister = ({navigation}: Props) => ({
           alignSelf: "center"
         }}
       >
-        Register
+        Create Planet
       </Text>
     </View>
   ),
@@ -67,13 +68,6 @@ const ContainerButton = styled(View)`
   align-items: center;
 `;
 
-const ButtonBack = styled(Button)`
-  margin-right: 15px;
-  justify-content: center;
-  align-items: center;
-  width: 35%;
-
-`;
 const ButtonRegister = styled(Button)`
   text-align: center;
   justify-content: center;
@@ -81,7 +75,7 @@ const ButtonRegister = styled(Button)`
   width: 35%;
 `;
 
-const IconMeteor = styled(Icon)`
+const IconAddPlanet = styled(IconBody)`
   font-size: 150px;
   color: white;
 `;
@@ -90,56 +84,95 @@ type Props = {
   navigation: NavigationScreenProp<any, any>;
 };
 
-const Register = ({ navigation }: Props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const CreatePlanet = ({ navigation }: Props) => {
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
-  function _inputChange(name: any, email: any, password: any) {
+  function _inputChange(name: any, description: any, image: any) {
     if (name) {
       setName(name);
-    } else if (email) {
-      setEmail(email);
+    } else if (description) {
+      setDescription(description);
     } else {
-      setPassword(password);
+      setImage(image);
     }
   }
 
+  const mutation = graphql`
+    mutation CreatePlanetQuery($input: createPlanetMutationInput!) {
+      createPlanetMutation(input: $input) {
+        error
+        planets {
+          id
+          name
+          description
+          img
+        }
+      }
+    }
+  `;
+
+  function updater(store: any) {
+    const root = store.getRoot();
+
+    const newPlanets = store
+      .getRootField("createPlanetMutation")
+      .getLinkedRecords("planets");
+
+    root.setLinkedRecords(newPlanets, "planets");
+  }
+
+  const createPlanet = () => {
+    commitMutation(Environment, {
+      mutation,
+      variables: { input: { name, description, img: image } },
+      updater,
+      onCompleted: async (response: any, errors: any) => {
+        if (errors) {
+          return Alert.alert(errors.toString());
+        }
+        if (!response.createPlanetMutation.planets) {
+          return Alert.alert(response.createPlanetMutation.error.toString());
+        }
+
+        return navigation.goBack();
+      },
+
+      onError: (err: any) => {
+        return Alert.alert(err.toString());
+      }
+    });
+  };
+
   return (
     <Container>
-      <IconMeteor name="md-person-add" />
+      <IconAddPlanet name="add-to-list" />
       <ContainerForm>
         <Input
           tintColor="white"
-          nameInput="name"
+          nameInput="Name"
           value={name}
           onChangeText={(value: any) => _inputChange(value, null, null)}
         />
         <Input
           tintColor="white"
-          nameInput="Email"
-          value={email}
+          nameInput="Description"
+          value={description}
           onChangeText={(value: any) => _inputChange(null, value, null)}
         />
         <Input
-          nameInput="Password"
-          secureTextEntry={true}
-          value={password}
+          nameInput="Image link"
+          value={image}
           onChangeText={(value: any) => _inputChange(null, null, value)}
         />
         <ContainerButton>
-          <ButtonBack
-            light
-            onPress={() => navigation.goBack()}
-            color="#463064"
-            nameButton="back"
-          />
           <ButtonRegister
             light
             bordered
-            // onPress={loginIn}
+            onPress={createPlanet}
             color="#463064"
-            nameButton="register"
+            nameButton="Create"
           />
         </ContainerButton>
       </ContainerForm>
@@ -147,4 +180,4 @@ const Register = ({ navigation }: Props) => {
   );
 };
 
-export default Register;
+export default CreatePlanet;

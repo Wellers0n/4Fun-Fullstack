@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   View,
   YellowBox,
   FlatList,
-  Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import createQueryRenderer from "./../relay/createQueryRenderer";
 import { graphql, createFragmentContainer } from "react-relay";
 import { Home_planets } from "./__generated__/Home_planets.graphql";
 import { withNavigation } from "react-navigation";
 import styled from "styled-components";
-import imgDistance from "./../images/ic_distance.png";
-import imgGravity from "./../images/ic_gravity.png";
+import { NavigationScreenProp } from "react-navigation";
+import IconHeader from "react-native-vector-icons/Entypo";
+import IconFabButton from "react-native-vector-icons/Ionicons";
+import CardItem from "./../components/card";
 
-export const navigationOptionsHome = (navigation: any) => ({
+export const navigationOptionsHome = ({ navigation }: Props) => ({
   headerStyle: {
     backgroundColor: "#3479ff"
   },
@@ -33,10 +35,22 @@ export const navigationOptionsHome = (navigation: any) => ({
       </Text>
     </View>
   ),
-  headerLeft: <View style={{ flex: 1 }} />,
+  headerLeft: (
+    <View style={{ flex: 1 }}>
+      <IconMenu
+        onPress={() => navigation.openDrawer()}
+        color="white"
+        size={40}
+        name="menu"
+      />
+    </View>
+  ),
   headerRight: <View style={{ flex: 1 }} />
 });
 
+const IconMenu = styled(IconHeader)`
+  padding-left: 5px;
+`;
 const Container = styled(View)`
   height: 100%;
   background: #463064;
@@ -44,134 +58,58 @@ const Container = styled(View)`
   align-items: center;
 `;
 
-const ContainerCard = styled(TouchableOpacity)`
-  width: 100%;
-  flex-direction: row;
-  margin: 10px 0px;
-  background: transparent;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const ContainerImage = styled(View)`
-  background: transparent;
-  justify-content: center;
-  z-index: 2;
-  margin-right: -50px;
-`;
-
-const Img = styled(Image)`
-  width: 100px;
-  height: 100px;
-  background: yellow;
-`;
-
-const Icon = styled(Image)`
-  width: 25px;
-  height: 25px;
-`;
-
-const ContainerInfo = styled(View)`
-  background: #5d4a81;
-  height: 130px;
-  justify-content: center;
-  padding-left: 75px;
-  border-radius: 10px;
-  width: 80%;
-`;
-
-const ContainerMain = styled(View)`
-  height: 110px;
-  overflow: hidden;
-`;
-
-const Title = styled(Text).attrs(() => ({
-  fontWeight: "bold"
-}))`
-  margin-top: 5px;
-  font-size: 22;
-  color: white;
-`;
-
-const SubTitle = styled(Text)`
-  margin-top: 2px;
-  font-size: 15;
-  color: #8774af;
-`;
-
-const BorderLine = styled(View)`
-  width: 30px;
-  margin-top: 8px;
-`;
-
-const Head = styled(View)``;
-
-const Body = styled(View)`
-  padding-right: 10px;
+const FabButton = styled(TouchableOpacity)`
   height: 50px;
-  justify-content: space-between;
-  flex-direction: row;
+  width: 50px;
+  background: white;
+  justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+`;
+
+const FabButtonIcon = styled(IconFabButton)`
+  color: #3479ff;
 `;
 
 type Props = {
   planets: Home_planets;
+  navigation: NavigationScreenProp<any, any>;
 };
 
-const Home = ({ planets }: Props) => {
+const Home = (props: Props) => {
+  //props
+  const { planets, navigation } = props;
+
+
   YellowBox.ignoreWarnings([
     "Warning: Async Storage has been extracted from react-native core"
   ]); // <- insert the warning text here you wish to hide.
-  const CardItem = ({ item }: any) => {
-    return (
-      <ContainerCard>
-        <ContainerImage>
-          <Img resizeMode="contain" borderRadius={50} source={{ uri: item.img }} />
-        </ContainerImage>
-        <ContainerInfo>
-          <ContainerMain>
-            <Head>
-              <Title style={{ fontWeight: "bold" }}>{item.name}</Title>
-              <SubTitle style={{ fontWeight: "bold" }}>
-                Milkyway Glaxey
-              </SubTitle>
-              <BorderLine
-                style={{
-                  borderBottomColor: "#00baff",
-                  borderBottomWidth: 3,
-                  borderRadius: 50
-                }}
-              />
-            </Head>
-            <Body>
-              <View style={{ flexDirection: "row" }}>
-                <Icon source={imgDistance} resizeMode="contain" />
-                <Text style={{marginLeft:5, color:'#8774af'}}>0.7b km</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Icon source={imgGravity} resizeMode="contain" />
-                <Text style={{marginLeft:5, color:'#8774af'}}>11.5 m/s²</Text>
-              </View>
-            </Body>
-          </ContainerMain>
-        </ContainerInfo>
-      </ContainerCard>
-    );
-  };
 
+  // render
   return (
     <Container>
+      {console.log('qui')}
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={planets}
         keyExtractor={(item, index: number) => index.toString()}
         renderItem={({ item: DataItem, separators }: any) => (
-          <CardItem key={separators} item={DataItem} />
+          <CardItem navigation={navigation} key={separators} item={DataItem} />
         )}
       />
+      <FabButton
+        style={{ borderRadius: 50 }}
+        onPress={() => navigation.navigate("CreatePlanetScreen")}
+      >
+        <FabButtonIcon name="md-add" size={30} />
+      </FabButton>
     </Container>
   );
 };
 
+// fragment
 const FragmentContainerHome = createFragmentContainer(Home, {
   planets: graphql`
     fragment Home_planets on Planets @relay(plural: true) {

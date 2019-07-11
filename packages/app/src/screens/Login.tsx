@@ -7,10 +7,12 @@ import { graphql, commitMutation } from "react-relay";
 import Environment from "./../relay/environment";
 import Button from "./../components/button";
 import Icon from "react-native-vector-icons/Ionicons";
+import { NavigationScreenProp } from "react-navigation";
 
-export const navigationOptionsLogin = (navigation: any) => ({
+// navigationOption
+export const navigationOptionsLogin = ({navigation}: Props) => ({
   headerStyle: {
-    backgroundColor: "#3479ff",
+    backgroundColor: "#3479ff"
   },
   headerTitle: (
     <View style={{ flex: 1 }}>
@@ -30,6 +32,7 @@ export const navigationOptionsLogin = (navigation: any) => ({
   headerRight: <View style={{ flex: 1 }} />
 });
 
+// styled's
 const Container = styled(View)`
   height: 100%;
   background: #463064;
@@ -57,13 +60,13 @@ const ButtonRegister = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: 35%;
 `;
 const ButtonLogin = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: 35%;
 `;
 
 const IconMeteor = styled(Icon)`
@@ -72,10 +75,16 @@ const IconMeteor = styled(Icon)`
   color: white;
 `;
 
-const Login = ({ navigation }: any) => {
+type Props = {
+  navigation: NavigationScreenProp<any, any>;
+};
+
+// main
+const Login = ({ navigation }: Props) => {
   const [email, setEmail] = useState("wellerson.coffee@gmail.com");
   const [password, setPassword] = useState("123");
 
+  // mutation query
   const mutation = graphql`
     mutation LoginQuery($input: singInMutationInput!) {
       signInMutation(input: $input) {
@@ -85,6 +94,7 @@ const Login = ({ navigation }: any) => {
     }
   `;
 
+  // set token in the localStorage
   const _storeData = async (token: string) => {
     try {
       await AsyncStorage.setItem("token", token);
@@ -94,6 +104,7 @@ const Login = ({ navigation }: any) => {
     }
   };
 
+  // function mutation login
   const loginIn = () => {
     commitMutation(Environment, {
       mutation,
@@ -106,7 +117,7 @@ const Login = ({ navigation }: any) => {
         const token = response.signInMutation.token;
         if (token) {
           _storeData(token);
-          return navigation.navigate("HomeScreen");
+          return navigation.navigate("HomeDrawerScreen");
         }
         Alert.alert(response.signInMutation.error.toString());
       },
@@ -117,6 +128,7 @@ const Login = ({ navigation }: any) => {
     });
   };
 
+  // change email and password
   function _inputChange(email: any, password: any) {
     if (email) {
       setEmail(email);
@@ -125,6 +137,7 @@ const Login = ({ navigation }: any) => {
     }
   }
 
+  // render()
   return (
     <Container>
       <IconMeteor name="md-planet" />

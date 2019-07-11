@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start --reset-cache",
+    "start": "react-native start",
     "test": "jest",
-    "clean": "yarn cache clean",
+    "clear": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+    "relay:watch": "yarn relay -- --watch",
     "relay": "relay-compiler --src ./src --schema ./data/schema.graphql --language typescript  --watchman false",
-    "react-devtool": "react-devtools"
+    "react-devtool": "react-devtools"    
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.4.4",
@@ -25,6 +26,7 @@
     "i": "^0.3.6",
     "native-base": "^2.12.1",
     "react": "^16.8.6",
+    "react-devtools": "^3.6.1",
     "react-native": "^0.59.9",
     "react-native-gesture-handler": "^1.3.0",
     "react-native-share": "^1.2.1",
@@ -33,6 +35,7 @@
     "react-relay": "^5.0.0",
     "relay-compiler": "^5.0.0",
     "relay-compiler-language-typescript": "^4.3.0",
+    "relay-devtools": "^1.4.0",
     "relay-runtime": "^5.0.0",
     "styled-components": "^4.3.2"
   },

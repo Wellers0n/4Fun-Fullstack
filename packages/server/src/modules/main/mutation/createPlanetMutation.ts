@@ -1,6 +1,7 @@
 import Planet from "../../../model/planets";
-import { GraphQLString, GraphQLNonNull } from "graphql";
+import { GraphQLString, GraphQLNonNull, GraphQLList } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
+import PlanetType from "./../PlanetType";
 
 export default mutationWithClientMutationId({
   name: "createPlanetMutation",
@@ -26,8 +27,10 @@ export default mutationWithClientMutationId({
 
     if (!planet) {
       await Planet.create({ name, description, img, idUser });
+      const planetUpdate = await Planet.find({})
       return {
-        success: "Insert planet with success"
+        success: "success",
+        planets: planetUpdate
       };
     }
 
@@ -43,6 +46,10 @@ export default mutationWithClientMutationId({
     error: {
       type: GraphQLString,
       resolve: ({ error }) => error
+    },
+    planets: {
+      type: new GraphQLList(PlanetType),
+      resolve: ({planets}) => planets
     }
   }
 });
