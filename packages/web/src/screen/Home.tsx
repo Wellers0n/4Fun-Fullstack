@@ -16,42 +16,6 @@ import {
   Typography
 } from "@material-ui/core";
 
-const Container = styled.div`
-  height: 100vh;
-  background: #272425;
-  display: flex;
-`;
-
-const ContainerCard = styled.div`
-  display: flex;
-  overflow: auto;
-  flex-wrap: wrap;
-  align-items: stretch;
-  jusitfy-content:stretch;
-  margin-bottom: 10px;
-`;
-
-const CardMain = styled(Card)`
-  && {
-    width: 32%;
-    margin: 5px;
-  }
-`;
-
-const Button = styled(Fab)`
-  && {
-    position: absolute;
-    right: 35px;
-    bottom: 20px;
-    background: gray;
-    color: white;
-  }
-
-  &&:hover {
-    background: gray;
-  }
-`;
-
 type Props = {
   planets: Home_planets;
   history: any;
@@ -88,7 +52,7 @@ const Home = ({ history, planets }: Props) => {
   return (
     <Container>
       <ContainerCard>
-        {planets.map((value, i) => (
+        {planets?.map((value, i) => (
           <RenderItem value={value} key={i} />
         ))}
       </ContainerCard>
@@ -146,3 +110,41 @@ export default HomeQueryRender;
 //     );
 //   }}
 // />
+
+
+const Container = styled.div`
+  height: 100vh;
+  background: #272425;
+  display: flex;
+`;
+
+const ContainerCard = styled.div`
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  align-items: stretch;
+  jusitfy-content:stretch;
+  margin-bottom: 10px;
+`;
+
+const CardMain = styled(Card)`
+  && {
+    width: 50%;
+    height: 40%;
+    margin: 5px;
+  }
+`;
+
+const Button = styled(Fab)`
+  && {
+    position: absolute;
+    right: 35px;
+    bottom: 20px;
+    background: gray;
+    color: white;
+  }
+
+  &&:hover {
+    background: gray;
+  }
+`;

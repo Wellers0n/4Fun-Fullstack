@@ -8,67 +8,6 @@ import Input from "./../components/Input";
 import MsgError from "./../components/MsgError";
 import Button from "./../components/Button";
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: #272425;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-`;
-
-export const Header = styled.div`
-  display: flex;
-  height: 70px;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const PlanetIcon = styled.i`
-  color: white;
-  font-size: 3em;
-  display: flex;
-  aligm-items: center;
-`;
-
-export const Form = styled.form`
-  z-index: 1;
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-`;
-
-export const Title = styled.span`
-  font-size: 2.5rem;
-  font-family: "Nunito", sans-serif;
-  font-weight: bold;
-  padding: 30px 0px;
-  color: white;
-  text-align: left;
-`;
-
-export const InputTitle = styled.span`
-  font-size: 1.2rem;
-  font-family: "Nunito", sans-serif;
-  color: white;
-  padding: 10px 0px;
-  width: 350px;
-`;
-
-export const ContainerBottom = styled.div`
-  display: flex;
-  margin-top: 25px;
-  width: 350px;
-  align-items: center;
-  justify-content: space-evenly;
-`;
-
 const Login = ({ history }: RouterProps) => {
   // useState's()
   const [email, setEmail] = useState("");
@@ -138,8 +77,8 @@ const Login = ({ history }: RouterProps) => {
           onChange={(e: onChangeValue) => setPassword(e.target.value)}
         />
         <ContainerBottom>
-          <Button onClick={() => history.push("/signup")} name="Registre" />
           <Button verse type="submit" name="Login" />
+          <Button onClick={() => history.push("/signup")} name="Registre" />
         </ContainerBottom>
       </Form>
       <MsgError msg={msg} />
@@ -148,3 +87,65 @@ const Login = ({ history }: RouterProps) => {
 };
 
 export default Login;
+
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  background: #272425;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+`;
+
+export const Header = styled.div`
+  display: flex;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PlanetIcon = styled.i`
+  color: white;
+  font-size: 3em;
+  display: flex;
+  aligm-items: center;
+`;
+
+export const Form = styled.form`
+  z-index: 1;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+`;
+
+export const Title = styled.span`
+  font-size: 2.5rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  padding: 30px 0px;
+  color: white;
+  text-align: left;
+`;
+
+export const InputTitle = styled.span`
+  font-size: 1.2rem;
+  font-family: "Nunito", sans-serif;
+  color: white;
+  padding: 10px 0px;
+  width: 350px;
+`;
+
+export const ContainerBottom = styled.div`
+  display: flex;
+  margin-top: 25px;
+  width: 350px;
+  align-items: center;
+  justify-content: space-evenly;
+`;

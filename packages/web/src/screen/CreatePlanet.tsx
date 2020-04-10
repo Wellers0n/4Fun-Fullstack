@@ -5,7 +5,7 @@ import { RouterProps } from "react-router";
 import Input from "../components/Input";
 // import MsgError from "../components/MsgError";
 import Button from "../components/Button";
-import { CreateMutationResponse } from "./__generated__/CreateMutation.graphql";
+import { CreatePlanetQueryResponse } from "./__generated__/CreatePlanetQuery.graphql";
 import {
   Container,
   Title,
@@ -16,7 +16,7 @@ import {
   Form
 } from "./Login";
 
-const Signup = ({ history }: RouterProps) => {
+const CreatePlanet = ({ history }: RouterProps) => {
   // useState's
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -26,7 +26,7 @@ const Signup = ({ history }: RouterProps) => {
 
   // mutation
   const mutation = graphql`
-    mutation CreateMutation($input: createPlanetMutationInput!) {
+    mutation CreatePlanetQuery($input: createPlanetMutationInput!) {
       createPlanetMutation(input: $input) {
         success
         error
@@ -40,7 +40,7 @@ const Signup = ({ history }: RouterProps) => {
     commitMutation(Environment, {
       mutation,
       variables: { input: { name, description, img } },
-      onCompleted: (response: CreateMutationResponse, errors: any) => {
+      onCompleted: (response: CreatePlanetQueryResponse, errors: any) => {
         if (errors) return console.log(errors);
         const success = response.createPlanetMutation.success;
 
@@ -104,4 +104,4 @@ const Signup = ({ history }: RouterProps) => {
   );
 };
 
-export default Signup;
+export default CreatePlanet;

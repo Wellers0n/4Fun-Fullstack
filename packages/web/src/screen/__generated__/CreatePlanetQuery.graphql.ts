@@ -7,24 +7,24 @@ export type createPlanetMutationInput = {
     readonly img: string;
     readonly clientMutationId?: string | null;
 };
-export type CreateMutationVariables = {
+export type CreatePlanetQueryVariables = {
     readonly input: createPlanetMutationInput;
 };
-export type CreateMutationResponse = {
+export type CreatePlanetQueryResponse = {
     readonly createPlanetMutation: {
         readonly success: string | null;
         readonly error: string | null;
     } | null;
 };
-export type CreateMutation = {
-    readonly response: CreateMutationResponse;
-    readonly variables: CreateMutationVariables;
+export type CreatePlanetQuery = {
+    readonly response: CreatePlanetQueryResponse;
+    readonly variables: CreatePlanetQueryVariables;
 };
 
 
 
 /*
-mutation CreateMutation(
+mutation CreatePlanetQuery(
   $input: createPlanetMutationInput!
 ) {
   createPlanetMutation(input: $input) {
@@ -80,7 +80,7 @@ const node: ConcreteRequest = (function () {
         "kind": "Request",
         "fragment": {
             "kind": "Fragment",
-            "name": "CreateMutation",
+            "name": "CreatePlanetQuery",
             "type": "MutationType",
             "metadata": null,
             "argumentDefinitions": (v0 /*: any*/),
@@ -88,18 +88,18 @@ const node: ConcreteRequest = (function () {
         },
         "operation": {
             "kind": "Operation",
-            "name": "CreateMutation",
+            "name": "CreatePlanetQuery",
             "argumentDefinitions": (v0 /*: any*/),
             "selections": (v1 /*: any*/)
         },
         "params": {
             "operationKind": "mutation",
-            "name": "CreateMutation",
+            "name": "CreatePlanetQuery",
             "id": null,
-            "text": "mutation CreateMutation(\n  $input: createPlanetMutationInput!\n) {\n  createPlanetMutation(input: $input) {\n    success\n    error\n  }\n}\n",
+            "text": "mutation CreatePlanetQuery(\n  $input: createPlanetMutationInput!\n) {\n  createPlanetMutation(input: $input) {\n    success\n    error\n  }\n}\n",
             "metadata": {}
         }
     } as any;
 })();
-(node as any).hash = 'ea0edcc3c1ab341024364585b23eed80';
+(node as any).hash = '1f318b6afc49d9f35b2002d5861796af';
 export default node;

@@ -28,6 +28,7 @@ app.use(router.allowedMethods());
 
 const graphqlSettingsPerReq = async (req: Request, ctx: Response) => {
   const { user } = await getUser(req.header.authorization);
+  console.log('header', req.header.authorization)
 
   // const dataloaders = Object.keys(loaders).reduce(
   //   (acc, loaderKey) => ({
